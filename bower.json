@@ -1,0 +1,20 @@
+{
+  "name": "prankbook",
+  "version": "1.0.0",
+  "homepage": "https://github.com/Cassioblu55/prankbook",
+  "authors": [
+    "cbhudson <cassio-hudson@uiowa.edu>"
+  ],
+  "description": "php site for pranks",
+  "keywords": [
+    "prank"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
