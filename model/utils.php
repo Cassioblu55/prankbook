@@ -20,7 +20,7 @@ function inNested($errors, $query_table, $nested_required, $present, $message) {
 		$check .= $key . "=" . "'" . $_POST [$nested_required [$key]] . "' AND ";
 	}
 	if ($result = $db->query ( substr ( $check, 0, strlen ( $check ) - 5 ) . ";" )) {
-		if (($result->num_rows == 0) == $present) {
+		if (($result->rowCount() == 0) == $present) {
 			if ($message) {
 				array_push ( $errors, $message );
 			} else {
@@ -36,7 +36,7 @@ function unique($errors, $unique_column) {
 	$db = connect ();
 	$check = "SELECT * FROM " . $_POST ['table'] . " WHERE " . $unique_column . "='" . $_POST [$unique_column] . "';";
 	if ($result = $db->query ( $check )) {
-		if ($result->num_rows > 0) {
+		if ($result->rowCount() > 0) {
 			array_push ( $errors, getOwnColumnsDisplay ( $unique_column ) . " already present" );
 		}
 	}
@@ -48,9 +48,8 @@ function unique($errors, $unique_column) {
 function inTable($errors, $query_table, $query_column_name, $value_column_name) {
 	$db = connect ();
 	$check = "SELECT * FROM " . $query_table . " WHERE " . $query_column_name . "='" . $_POST [$value_column_name] . "';";
-	
 	if ($result = $db->query ( $check )) {
-		if ($result->num_rows == 0) {
+		if ($result->rowCount() == 0) {
 			array_push ( $errors, getOwnColumnsDisplay ( $value_column_name ) . " is not present in " . getTableDisplay ( $query_table ) );
 		}
 	}

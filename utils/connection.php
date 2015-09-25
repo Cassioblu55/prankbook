@@ -1,17 +1,23 @@
 <?php
 // connects to database
 function connect() {
-	include '../config/config.php';
-	return connectSpecific ( $dbHost, $dbUser, $dbPassword, $dbName );
+	$dbUser = "cbhudson";
+	$dbPassword = "PcJL7JDgMdiY";
+	$dbName = "db_cbhudson";
+	$options = array (
+			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8' 
+	);
+	$dbHost = "dbdev.cs.uiowa.edu";
+	$adminEmail = $adminEmail = "cassio-hudson@uiowa.edu";
+	$baseURL = "http://webdev.cs.uiowa.edu/~cbhudson/informatics_project/";
+	return connectSpecific ( $dbHost, $dbUser, $dbPassword, $dbName, $options );
 }
-function connectSpecific($dbHost, $dbUser, $dbPassword, $dbName) {
-	// @ suppress errors
-	@ $db = new mysqli ( $dbHost, $dbUser, $dbPassword, $dbName );
-	// check for errors conneting to database
-	if ($db->connect_errno) {
-		echo ("Cannot conect to database.<br/>");
-		echo ($db->connect_error . "<br/>");
-		die ();
+function connectSpecific($dbHost, $dbUser, $dbPassword, $dbName, $options) {
+	try {
+		$db = new PDO("mysql:host={$dbHost};dbname={$dbName};charset=utf8", $dbUser, $dbPassword, $options); 
+	} catch ( PDOException $e ) {
+		echo 'Connection failed: ' . $e->getMessage ();
+		exit ();
 	}
 	return $db;
 }

@@ -1,4 +1,5 @@
 <?php 
+
     // First we execute our common code to connection to the database and start the session 
     require("../../utils/common.php"); 
      
@@ -17,25 +18,8 @@
      
     // We can display the user's username to them by reading it from the session array.  Remember that because 
     // a username is user submitted content we must use htmlentities on it before displaying it to the user. 
-    include_once '../templates/head.php';
 ?> 
-<div class="container-fluid">
-<div class="row">
-	<div class="col-sm-12">
-		<form action="../../controllers/insert.php" method="post">
-			<input type="hidden" name="table" value="services">
-			<div class="form-group">
-				<label for="name">Service Name</label> <input type="text"
-					class="form-control" name="name" />
-			</div>
-			<div class="form-group">
-				<label for="prankster_id">Service Provider</label> <input
-					type="number" class="form-control" name="prankster_id" />
-			</div>
-			<button type="submit">Add</button>
-
-		</form>
-	</div>
-</div>
-</div>
-<?php include_once '../templates/footer.php';?>
+Hello <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?>, secret content!<br /> 
+<a href="memberlist.php">Memberlist</a><br /> 
+<a href="edit_account.php">Edit Account</a><br /> 
+<a href="/~cbhudson/informatics_project/prankbook/utils/logout.php">Logout</a>

@@ -3,7 +3,7 @@ include_once '../utils/columnDefinitions.php';
 include_once 'utils.php';
 function validate() {
 	$table = $_POST ['table'];
-	if ($table == 'people') {
+	if ($table == 'users') {
 		return peopleValidate ();
 	} elseif ($table == 'prank_request') {
 		return pranksValidate ();
@@ -25,7 +25,7 @@ function pranksValidate() {
 	$errors = requiredColumns ( $errors, $requiredColumns );
 	if (count ( $errors ) == 0) {
 		$errors = inTable ( $errors, 'services', 'id', 'service_id' );
-		$errors = inTable ( $errors, 'people', 'id', 'customer_id' );
+		$errors = inTable ( $errors, 'users', 'id', 'customer_id' );		
 		if (count ( $errors ) == 0) {
 			$nested_cannot_exist = [ 
 					'id' => 'service_id',
