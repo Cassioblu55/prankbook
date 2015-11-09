@@ -1,7 +1,7 @@
 <?php
-include_once '../templates/head.php';
-// First we execute our common code to connection to the database and start the session
-require ("../../utils/common.php");
+	include_once '../../config/config.php';
+    // First we execute our common code to connection to the database and start the session 
+    require_once($serverPath."utils/common.php");
 
 // This variable will be used to re-display the user's username to them in the
 // login form if they fail to enter the correct password. It is initialized here
@@ -80,7 +80,7 @@ if (! empty ( $_POST )) {
 		$_SESSION ['user'] = $row;
 		
 		// Redirect the user to the private members-only page.
-		header ( "Location: /~cbhudson/informatics_project/prankbook" );
+		header ( "Location: ".$baseURL);
 		die ( "Redirecting to: main page" );
 	} else {
 		// Tell the user they failed
@@ -95,6 +95,7 @@ if (! empty ( $_POST )) {
 	}
 }
 
+require_once $serverPath.'views/templates/head.php';
 ?>
 <form action="index.php" method="post">
 	<div class="col-sm-4">
@@ -112,7 +113,7 @@ if (! empty ( $_POST )) {
 					<input type="password" class="form-control" required="required" name="password" value="" placeholder="Password"/>
 				</div>
 				<div class="form-group">
-					<button class="btn btn-default" type="submit">Login</button>
+					<button class="btn btn-primary" type="submit">Login</button>
 				</div>
 				<div class="form-group">
 					<a  href="register.php">Create Account</a>
@@ -121,4 +122,4 @@ if (! empty ( $_POST )) {
 		</div>
 	</div>
 </form>
-<?php include_once '../templates/footer.php';?>
+<?php include_once $serverPath.'views/templates/footer.php';?>

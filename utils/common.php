@@ -1,6 +1,6 @@
 <?php 
     // These variables define the connection information for your MySQL database 
-    include_once 'connection.php';
+    include_once $serverPath.'utils/connection.php';
     $db = connect();
      
     // This statement configures PDO to throw an exception when it encounters 

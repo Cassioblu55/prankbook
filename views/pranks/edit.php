@@ -1,49 +1,103 @@
-<?php 
-    // First we execute our common code to connection to the database and start the session 
-    require("../../utils/common.php"); 
-     
-    // At the top of the page we check to see whether the user is logged in or not 
-    if(empty($_SESSION['user'])) 
-    { 
-        // If they are not, we redirect them to the login page. 
-        header("Location: /~cbhudson/informatics_project/prankbook/views/login/"); 
-         
-        // Remember that this die statement is absolutely critical.  Without it, 
-        // people can view your members-only content without logging in. 
-        die("Redirecting to login"); 
-    } 
-     
-    // Everything below this point in the file is secured by the login system 
-     
-    // We can display the user's username to them by reading it from the session array.  Remember that because 
-    // a username is user submitted content we must use htmlentities on it before displaying it to the user. 
-    include_once '../templates/head.php';
-?> 
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-sm-12">
-			<form action="../../controllers/insert.php" method="post">
-				<input type="hidden" name="table" value="prank_request">
-				<div class="form-group">
-					<label for="name">Prank Name</label> <input type="text"
-						class="form-control" name="name" />
-				</div>
-				<div class="form-group">
-					<label for="date">Prank Date</label> <input type="date"
-						class="form-control" name="date" />
-				</div>
-				<div class="form-group">
-					<label for="customer_id">Customer</label> <input type="number"
-						class="form-control" name="customer_id" />
-				</div>
-				<div class="form-group">
-					<label for="service_id">Prank</label> <input type="number"
-						class="form-control" name="service_id" />
-				</div>
-				<button type="submit">Add</button>
+<?php
+require_once '../../config/config.php';
+require_once $serverPath . 'utils/requireLogin.php';
+require_once $serverPath . 'utils/dataUpdateInsert.php';
 
-			</form>
+$table = "prank";
+if (! empty ( $_POST )) {
+	$data = [ 
+			'prank_name' => $_POST ['prank_name'],
+			'description' => $_POST ['description'],
+			'operating_range' => $_POST ['operating_range'],
+			'zipcode' => $_POST ['zipcode'],
+			'user_id' => $_SESSION ['user'] ['id'] 
+	];
+	
+	if (empty ( $_GET ['id'] )) {
+		insert ( $table, $data );
+		$added = true;
+		header ( "Location: index.php" );
+		die ( "Redirecting to index.php" );
+	} else {
+		//Normal update cannot be used here becuase it would allow anyone who is logged in to update anyone elses prank
+		$update = "UPDATE " . $table . " SET ";
+		foreach ( $data as $columnName => $value ) {
+			$update .= $columnName . "='" . $value . "', ";
+		}
+		$update = substr ( $update, 0, strlen ( $update ) - 2 ) . " WHERE id=" . $_GET ['id'] ." AND user_id=".$_SESSION['user']['id'].";";
+		echo $update;
+		runInsert ( $update );
+		header ( "Location: index.php" );
+		die ( "Redirecting to index.php" );
+	}
+}
+
+include_once $serverPath . 'views/templates/head.php';
+?>
+
+<div ng-controller="prankAddEditController">
+	<form
+		action="edit.php<?php if(!empty($_GET['id'])){ echo "?id=".$_GET['id'];}?>"
+		method="post">
+		<div class="col-md-6">
+			<div
+				class="panel <?php if($added){echo "panel-success";} else{echo "panel-default";} ?>">
+				<div class="panel-heading">
+					<div class="panel-title">{{addOrEdit}} prank</div>
+				</div>
+				<div class="panel-body">
+					<div class="form-group">
+						<label for="prank_name">Prank Name</label> <input type="text"
+							class="form-control" name="prank_name"
+							ng-model="prank.prank_name" required="required"
+							placeholder="Prank Name" />
+					</div>
+					<div class="form-group">
+						<label for="description">Description</label>
+						<textarea class="form-control" name="description"
+							ng-model="prank.description" placeholder="Description"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="operating_range">Operating Range</label> <input
+							type="text" class="form-control" name="operating_range"
+							ng-model="prank.operating_range" placeholder="Operating Range" />
+					</div>
+					<div class="form-group">
+						<label for="zipcode">Zipcode</label> <input type="number"
+							class="form-control" name="zipcode" ng-model="prank.zipcode"
+							placeholder="Zipcode" />
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary" type="submit">{{saveOrUpdate}}</button>
+						<a class="btn btn-danger" href="index.php">Cancel</a>
+					</div>
+					<div style='<?php if($added){echo "color:#5cb85c";}else{echo "display:none";}?>'>Added
+						Prank</div>
+				</div>
+			</div>
 		</div>
-	</div>
+
+	</form>
+	<div id="prank" style="display: none"><?php if(!empty($_GET['id'])){echo $_GET['id'];}?></div>
+
 </div>
-<?php include_once '../templates/footer.php';?>
+
+<script type="text/javascript">
+var prank = document.getElementById("prank").textContent
+app.controller("prankAddEditController", ['$scope', "$http" , function($scope, $http){
+	console.log(prank);
+	if(prank){
+		$http.get('data.php?id='+prank).
+		then(function(response){
+			console.log(response);
+			$scope.prank = response.data[0];
+			$scope.prank.zipcode = Number($scope.prank.zipcode);
+			
+		});
+	}
+		$scope.addOrEdit = (!prank) ? "Add" : "Edit";
+		$scope.saveOrUpdate = (!prank) ? "Save" : "Update"
+
+			
+}]);
+</script>

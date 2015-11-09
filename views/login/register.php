@@ -1,7 +1,7 @@
 <?php 
-
+	include_once '../../config/config.php';
     // First we execute our common code to connection to the database and start the session 
-    require("../../utils/common.php"); 
+    require_once($serverPath."utils/common.php");  
      
     // This if statement checks to determine whether the registration form has been submitted 
     // If it has, then the registration code is run, otherwise the form is displayed 
@@ -18,10 +18,13 @@
         } 
          
         // Ensure that the user has entered a non-empty password 
-        if(empty($_POST['password'])) 
+        if(empty($_POST['password']) || empty($_POST['password2'])) 
         { 
             die("Please enter a password."); 
         } 
+        if($_POST['password'] != $_POST['password2']){
+        	die("Passwords do not match.");
+        }
          
         // Make sure the user entered a valid E-Mail address 
         // filter_var is a useful PHP function for validating form input, see: 
@@ -208,6 +211,10 @@
 				<div class="form-group">
 					<label for="password">Password</label>
 					<input type="password" class="form-control" required="required" name="password" value="" placeholder="Password">
+				</div>
+				<div class="form-group">
+					<label for="password2">Confirm Password</label>
+					<input type="password" class="form-control" required="required" name="password2" value="" placeholder="Confirm Password">
 				</div>
 				<div class="form-group">
 					<button class="btn btn-default" type="submit">Create Account</button>

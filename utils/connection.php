@@ -1,20 +1,18 @@
 <?php
-// connects to database
+// will return a connection to the database using the values found in config.php
+// requires config.php to be added
 function connect() {
-	$dbUser = "cbhudson";
-	$dbPassword = "PcJL7JDgMdiY";
-	$dbName = "db_cbhudson";
-	$options = array (
-			PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8' 
-	);
-	$dbHost = "dbdev.cs.uiowa.edu";
-	$adminEmail = $adminEmail = "cassio-hudson@uiowa.edu";
-	$baseURL = "http://webdev.cs.uiowa.edu/~cbhudson/informatics_project/";
-	return connectSpecific ( $dbHost, $dbUser, $dbPassword, $dbName, $options );
+	global $dbHost;
+	global $dbUser;
+	global $dbPassword;
+	global $dbName;
+	global $db_options;
+	
+	return connectSpecific ( $dbHost, $dbUser, $dbPassword, $dbName, $db_options );
 }
-function connectSpecific($dbHost, $dbUser, $dbPassword, $dbName, $options) {
+function connectSpecific($db_host, $db_user, $db_password, $db_name, $options) {
 	try {
-		$db = new PDO("mysql:host={$dbHost};dbname={$dbName};charset=utf8", $dbUser, $dbPassword, $options); 
+		$db = new PDO ( "mysql:host={$db_host};dbname={$db_name};charset=utf8", $db_user, $db_password, $options );
 	} catch ( PDOException $e ) {
 		echo 'Connection failed: ' . $e->getMessage ();
 		exit ();

@@ -1,13 +1,19 @@
+<!doctype html>
 <html ng-app='app'>
 <head>
-	<script src="/~cbhudson/informatics_project/prankbook/resources/jquery/dist/jquery.js"></script>
-	<script src="/~cbhudson/informatics_project/prankbook/resources/bootstrap/dist/js/bootstrap.min.js"></script>
-	<link rel="stylesheet"  href="/~cbhudson/informatics_project/prankbook/resources/bootstrap/dist/css/bootstrap.min.css">
-	<link rel="shortcut icon" href="/~cbhudson/favicon.ico" />
-	<link rel="stylesheet" href="/~cbhudson/informatics_project/prankbook/resources/layout.css"/>
+	<script src="<?php echo $baseURL?>resources/jquery/dist/jquery.js"></script>
+	<script src="<?php echo $baseURL?>resources/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="<?php echo $baseURL?>resources/angular/angular.min.js"></script>
+	<script src="<?php echo $baseURL?>resources/angular-ui-grid/ui-grid.min.js"></script>
+
+	<link rel="stylesheet"  href="<?php echo $baseURL?>resources/bootstrap/dist/css/bootstrap.min.css"/>
+	<link rel="stylesheet" type="text/css" href="<?php echo $baseURL?>resources/angular-ui-grid/ui-grid.min.css" />
+	<link rel="stylesheet" href="<?php echo $baseURL?>resources/layout.css"/>
+	<link rel="shortcut icon" href="<?php echo $baseURL?>resources/favicon.ico" />
 	
-	<script src="/~cbhudson/informatics_project/prankbook/resources/angular/angular.min.js"></script>
 </head>
-<script> var app = angular.module('app',[]);</script>
-<?php include_once 'menu.php';?>
+<script> var app = angular.module('app',['ui.grid']);</script>
+<?php 
+	include_once $serverPath.'views/templates/menu.php';
+?>
 
