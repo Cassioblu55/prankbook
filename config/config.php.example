@@ -1,0 +1,10 @@
+<?php
+$dbUser = "cjmetz";
+$dbPassword = "aP6y9rsxLSq6";
+$dbName = "db_cjmetz";
+$db_options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
+$dbHost = "dbdev.cs.uiowa.edu";
+$adminEmail = "conrad-metz@uiowa.edu";
+$baseURL = "/~cjmetz/project/";
+$serverPath = "/mnt/nfs/netapp1/webdev/user/cjmetz/project/";
+?>
