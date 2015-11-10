@@ -2,13 +2,28 @@
 include_once $serverPath . 'utils/connection.php';
 
 function update($table, $data) {
+	$update = makeBaseUpdate($table, $data)." WHERE id=".$_GET['id'].";";
+	runInsert($update);
+}
+
+function updateWithConstratints($table, $data, $constraints){
+	$update = makeBaseUpdate($table, $data)." ";
+	foreach ($constraints as $columnName => $value){
+		$update .= "WHERE ".$columnName."='".$value."' AND ";
+	}
+	$update = substr($update, 0,strlen($update)-4).";";
+	runInsert($update);
+	
+}
+
+function makeBaseUpdate($table, $data){
 	$update = "UPDATE " . $table." SET ";
 	foreach ( $data as $columnName => $value ) {
 		$update .= $columnName."='".$value."', ";
 	}
-	$update = substr($update, 0,strlen($update)-2)." WHERE id=".$_GET['id'].";";
-	runInsert ($update);
+	return substr($update, 0,strlen($update)-2);
 }
+
 
 function insert($table, $data) {
 	$columns = " (";

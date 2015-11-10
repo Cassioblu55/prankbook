@@ -8,5 +8,6 @@ create table users (
 	admin tinyint(1) DEFAULT '0' not null ,
 	password char(64) not null,
 	zipcode int(5) null,
+	admin tinyint(1) DEFAULT '0' not null,
 	primary key(id)
 );

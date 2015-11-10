@@ -4,7 +4,7 @@
 	require_once $serverPath.'utils/dataLookUp.php';
 		
 	//Will return all pranks from a given id
-	if($_GET['get'] == 'myPranks'){
+	if(!empty($_GET['get']) && $_GET['get'] == 'myPranks'){
 		$query = "SELECT * FROM prank WHERE user_id=".$_SESSION['user']['id'].";";
 		echo json_encode(runQuery($query));
 	}

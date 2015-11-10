@@ -39,6 +39,8 @@ if ( is_session_started() === FALSE ) session_start();
 							<li><a href="<?php echo $baseURL;?>views/services/purchased.php">My Services</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/pranks/index.php">My Pranks</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/reviews/index.php">My Reviews</a></li>
+					        <li role="separator" class="divider"></li>
+					        <li><a href="<?php echo $baseURL;?>views/profile/edit.php">Edit Profile</a></li>
 							<li><a href="<?php echo $baseURL;?>views/Admin/index.php">Adminstration</a></li>
 					        <li role="separator" class="divider"></li>
 					        <li><a href="<?php echo $baseURL;?>utils/logout.php">Sign out</a></li>
