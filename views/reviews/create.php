@@ -40,7 +40,7 @@ include_once $serverPath . 'views/templates/head.php';
 			<div
 				class="panel <?php if($added){echo "panel-success";} else{echo "panel-default";} ?>">
 				<div class="panel-heading">
-					<div class="panel-title">{{addOrEdit}} prank</div>
+					<div class="panel-title">Write Review</div>
 				</div>
 				<div class="panel-body">
 					<div class="form-group">
