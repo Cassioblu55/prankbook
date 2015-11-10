@@ -1,4 +1,5 @@
 <?php 
+//Admin
 	require_once '../../config/config.php';
 	require_once  $serverPath.'utils/requireLogin.php';
 	require_once $serverPath.'utils/dataLookUp.php';
@@ -9,10 +10,10 @@
 		echo json_encode(runQuery($query));
 	}
 	
+	if(!empty($_GET['id'])){
+		$query = "SELECT * FROM prank WHERE id=".$_GET['id']." AND user_id=".$_SESSION['user']['id'].';';
+		echo json_encode(runQuery($query));
+	}
 	
 	
-	
-	
-	
-
 ?>
