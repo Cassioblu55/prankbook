@@ -1,4 +1,19 @@
-<?php session_start();?>
+<?php 
+function is_session_started()
+{
+    if ( php_sapi_name() !== 'cli' ) {
+        if ( version_compare(phpversion(), '5.4.0', '>=') ) {
+            return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+        } else {
+            return session_id() === '' ? FALSE : TRUE;
+        }
+    }
+    return FALSE;
+}
+
+// Example
+if ( is_session_started() === FALSE ) session_start();
+?>
 
 <div ng-controller="MenuController">
 	<nav class="navbar navbar-default">
@@ -21,7 +36,7 @@
 				          <ul class="dropdown-menu">
 				            <li><a href="<?php echo $baseURL;?>views/profile/">My Profile</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/Messages/index.php">My Messages</a></li>
-							<li><a href="<?php echo $baseURL;?>views/services/index.php">My Services</a></li>
+							<li><a href="<?php echo $baseURL;?>views/services/purchased.php">My Services</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/pranks/index.php">My Pranks</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/reviews/index.php">My Reviews</a></li>
 							<li><a href="<?php echo $baseURL;?>views/Admin/index.php">Adminstration</a></li>
@@ -35,12 +50,12 @@
 		</div>
 	</nav>
 </div>
-<div id="user" style="display: none"><?php echo json_encode($_SESSION['user'])?></div>
+<div id="user" style="display: none"><?php if(!empty($_SESSION['user'])){echo json_encode($_SESSION['user']);}else{echo "{}";}?></div>
 <script type="text/javascript">
 var user = JSON.parse(document.getElementById("user").textContent);
 app.controller("MenuController", ['$scope' , function($scope){
-	$scope.user = user;
-	if($scope.user && $scope.user.username){
+	if(user.username){
+		$scope.user = user;
 		$scope.myProfile = "Hello, "+$scope.user.username;
 	}
 	else{

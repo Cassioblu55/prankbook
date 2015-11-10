@@ -36,7 +36,7 @@ app.controller("MyServicesController", ['$scope', "$http" , function($scope, $ht
 									{field: 'View',  enableColumnMenu: false, enableFiltering: false, width: 53, cellTemplate: '<a class="btn btn-primary" role="button" ng-href="prankid.php?id={{row.entity.id}}">View</a>'},
 	                               	{field: 'prank_name', enableColumnMenu: false, name: 'Name'},
 									{field: 'description', enableColumnMenu: false, name: 'Description'},
-									{field: 'firstname', enableColumnMenu: false, name: 'Pranker Name'},
+									{field: 'username', enableColumnMenu: false, name: 'Pranker Username'},
 									{field: 'operating_range', enableColumnMenu: false, name: 'Range(Miles)'},
 									{field: 'zipcode', enableColumnMenu: false, name: 'Zipcode'}
 								  ];

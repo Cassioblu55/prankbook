@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app='app'>
+<html ng-app="app">
 <head>
 	<script src="<?php echo $baseURL?>resources/jquery/dist/jquery.js"></script>
 	<script src="<?php echo $baseURL?>resources/bootstrap/dist/js/bootstrap.min.js"></script>
