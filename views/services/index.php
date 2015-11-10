@@ -33,7 +33,7 @@ app.controller("MyServicesController", ['$scope', "$http" , function($scope, $ht
 	$scope.gridModel = {enableFiltering: true, enableColumnResizing: true, showColumnFooter: true , enableSorting: false, showGridFooter: true, rowHeight: 42};
 
 	$scope.gridModel.columnDefs = [
-									{field: 'View',  enableColumnMenu: false, enableFiltering: false, width: 53, cellTemplate: '<a class="btn btn-primary" role="button" ng-href="prankid.php?id={{row.entity.id}}">View</a>'},
+									{field: 'View',  enableColumnMenu: false, enableFiltering: false, width: 53, cellTemplate: '<a class="btn btn-primary" role="button" ng-href="request.php">View</a>'},
 	                               	{field: 'prank_name', enableColumnMenu: false, name: 'Name'},
 									{field: 'description', enableColumnMenu: false, name: 'Description'},
 									{field: 'firstname', enableColumnMenu: false, name: 'Pranker Name'},

@@ -21,7 +21,7 @@
 				          <ul class="dropdown-menu">
 				            <li><a href="<?php echo $baseURL;?>views/profile/">My Profile</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/Messages/index.php">My Messages</a></li>
-							<li><a href="<?php echo $baseURL;?>views/services/index.php">My Services</a></li>
+							<li><a href="<?php echo $baseURL;?>views/services/purchased.php">My Services</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/pranks/index.php">My Pranks</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/reviews/index.php">My Reviews</a></li>
 							<li><a href="<?php echo $baseURL;?>views/Admin/index.php">Adminstration</a></li>
