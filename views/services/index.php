@@ -33,12 +33,13 @@ app.controller("MyServicesController", ['$scope', "$http" , function($scope, $ht
 	$scope.gridModel = {enableFiltering: true, enableColumnResizing: true, showColumnFooter: true , enableSorting: false, showGridFooter: true, rowHeight: 42};
 
 	$scope.gridModel.columnDefs = [
-									{field: 'View',  enableColumnMenu: false, enableFiltering: false, width: 53, cellTemplate: '<a class="btn btn-primary" role="button" ng-href="request.php">View</a>'},
+									{field: 'View',  enableColumnMenu: false, enableFiltering: false, width: 53, cellTemplate: '<a class="btn btn-primary" role="button" ng-href="request.php?id={{row.entity.id}}">View</a>'},
 	                               	{field: 'prank_name', enableColumnMenu: false, name: 'Name'},
 									{field: 'description', enableColumnMenu: false, name: 'Description'},
 									{field: 'username', enableColumnMenu: false, name: 'Pranker Username'},
 									{field: 'operating_range', enableColumnMenu: false, name: 'Range(Miles)'},
-									{field: 'zipcode', enableColumnMenu: false, name: 'Zipcode'}
+									{field: 'zipcode', enableColumnMenu: false, name: 'Zipcode'},
+									{field: 'price', enableColumnMenu: false, name: 'Price ($)'}
 								  ];
 
 	$scope.reloadGrid = function(){

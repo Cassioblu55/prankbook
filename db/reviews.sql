@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS reviews;
 create table reviews (
 	id int not null AUTO_INCREMENT,
 	rating varchar(5) null,

@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS messages;
 create table messages (
 	id int not null AUTO_INCREMENT,
 	reply varchar(255) null,

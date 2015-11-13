@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS services;
 create table services(
 	id int not null AUTO_INCREMENT,
 	date_requested varchar(8) not null,

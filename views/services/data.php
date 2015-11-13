@@ -8,8 +8,10 @@
 		echo json_encode(runQuery($query));
 	}
 	
-	
-	
+	if(!empty($_GET['id'])){
+		$query = "SELECT * FROM prank WHERE id=".$_GET['id']." AND user_id=".$_SESSION['user']['id'].';';
+		echo json_encode(runQuery($query));
+	}
 	
 	
 

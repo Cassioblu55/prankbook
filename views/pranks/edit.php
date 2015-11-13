@@ -10,6 +10,7 @@ if (! empty ( $_POST )) {
 			'description' => $_POST ['description'],
 			'operating_range' => $_POST ['operating_range'],
 			'zipcode' => $_POST ['zipcode'],
+			'price' => $_POST ['price'],
 			'user_id' => $_SESSION ['user'] ['id'] 
 	];
 	
@@ -66,6 +67,11 @@ include_once $serverPath . 'views/templates/head.php';
 						<label for="zipcode">Zipcode</label> <input type="number"
 							class="form-control" name="zipcode" ng-model="prank.zipcode"
 							placeholder="Zipcode" />
+					</div>
+					<div class="form-group">
+						<label for="price">Price</label> <input type="number"
+							class="form-control" name="price" ng-model="prank.price"
+							placeholder="Price (dollars)" />
 					</div>
 					<div class="form-group">
 						<button class="btn btn-primary" type="submit">{{saveOrUpdate}}</button>
