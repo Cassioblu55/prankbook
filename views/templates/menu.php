@@ -36,12 +36,12 @@ if ( is_session_started() === FALSE ) session_start();
 				          <ul class="dropdown-menu">
 				            <li><a href="<?php echo $baseURL;?>views/profile/">My Profile</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/Messages/index.php">My Messages</a></li>
-							<li><a href="<?php echo $baseURL;?>views/services/purchased.php">My Services</a></li>
+							<li><a href="<?php echo $baseURL;?>views/services/purchased.php">My Orders</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/pranks/index.php">My Pranks</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/reviews/index.php">My Reviews</a></li>
 					        <li role="separator" class="divider"></li>
 					        <li><a href="<?php echo $baseURL;?>views/profile/edit.php">Edit Profile</a></li>
-							<li><a href="<?php echo $baseURL;?>views/Admin/index.php">Adminstration</a></li>
+							<li><a ng-show="user.admin==1" href="<?php echo $baseURL;?>views/Admin/index.php">Adminstration</a></li>
 					        <li role="separator" class="divider"></li>
 					        <li><a href="<?php echo $baseURL;?>utils/logout.php">Sign out</a></li>
 				          </ul>
@@ -52,18 +52,30 @@ if ( is_session_started() === FALSE ) session_start();
 		</div>
 	</nav>
 </div>
-<div id="user" style="display: none"><?php if(!empty($_SESSION['user'])){echo json_encode($_SESSION['user']);}else{echo "{}";}?></div>
+<div style="display: hidden" id="loggedin"><?php ?>
 <script type="text/javascript">
-var user = JSON.parse(document.getElementById("user").textContent);
-app.controller("MenuController", ['$scope' , function($scope){
-	if(user.username){
-		$scope.user = user;
-		$scope.myProfile = "Hello, "+$scope.user.username;
+var loggedIn = <?php echo (!empty($_SESSION['user'])) ? "true" : "false";?>;
+app.controller("MenuController", ['$scope' ,'$http' , function($scope, $http){
+	if(loggedIn){
+		$http.get('<?php echo $baseURL;?>views/profile/data.php?get=myData').
+			then(function(response){
+				$scope.user = response.data;
+				console.log(response);
+				$scope.myProfile = "Hello, ";
+				if($scope.user.firstname && !$scope.user.lastname){
+					$scope.myProfile += $scope.user.firstname;
+				}
+				else if(!$scope.user.firstname && $scope.user.lastname){
+					$scope.myProfile += $scope.user.lastname;
+				}
+				else if($scope.user.firstname && $scope.user.lastname){
+					$scope.myProfile += ($scope.user.firstname + " " + $scope.user.lastname);
+				}
+				else{
+					$scope.myProfile += $scope.user.username;
+				}
+		});
 	}
-	else{
-		$scope.myProfile = "Hi!";
-	}
-	
 }]);
 
 </script>

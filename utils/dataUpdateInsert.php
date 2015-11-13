@@ -3,6 +3,7 @@ include_once $serverPath . 'utils/connection.php';
 
 function update($table, $data) {
 	$update = makeBaseUpdate($table, $data)." WHERE id=".$_GET['id'].";";
+	echo $update;
 	runInsert($update);
 }
 

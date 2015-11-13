@@ -1,10 +1,22 @@
 
 <?php 
 	require_once '../../config/config.php';
-	require_once  $serverPath.'utils/requireLogin.php';
+	require_once  $serverPath.'utils/requireAdmin.php';
 	require_once $serverPath.'utils/dataLookUp.php';
-	$query="SELECT * FROM prank where id=".$_GET['id'].";";
-	$prank=runQuery($query)[0];
+	require_once $serverPath.'utils/dataUpdateInsert.php';
+	
+	if(!empty($_POST) ){
+		$data = ["approval_status" => $_POST['approval_status'], "admin_id" => $_SESSION['user']['id']];
+		$table = "prank";
+		//Can use standard update here, will change status of id=$_GET['id'] to whatever is submited
+		update($table, $data);
+		header ( "Location: index.php" );
+		die ( "Redirecting to index.php" );
+	}
+	else{
+		$query="SELECT prank.*, users.username FROM prank INNER JOIN users ON prank.user_id = users.id WHERE prank.id=".$_GET['id'].";";
+		$prank=runQuery($query)[0];		
+	}
 	
 	include_once $serverPath.'views/templates/head.php';
 ?>
@@ -12,57 +24,33 @@
 <div>
 	<div class="container-fluid">
 		<div class="row">
-			<div class="col-md-12">
+			<div class="col-md-6">
 				<div class="panel panel-default">
 					<div class="panel-heading clearfix">
-						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Approve or Reject Prank</h4>
+						<h4 class="panel-title">Approve or Reject Prank</h4>
 					</div>
-					<div>
-					<h4>Prank Name<h4>
-					</div>
-					<div>
-					<?php echo $prank['prank_name'];?>
-					</div>
-					<div>
-					<h4>Description<h4>
-					</div>
-					<div>
-					<?php echo $prank['description'];?>
-					</div>
-</body>
-</html>
+					<div class="panel panel-body">
+						<h4>Prank Name</h4>
+						<?php echo $prank['prank_name'];?>
+						<h4>Description</h4>
+						<?php echo $prank['description'];?>
+						<h4>Prankster</h4>
+						<?php echo $prank['username'];?>
 					</div>
 					<div class="panel-footer">
-										
-					<?php
-						if(isset($_POST['submit']))
-						{$approval_status=$_POST['approval_status'];
-							if($approval_status!="Pending"){
-								$query=("insert into prank values('$approval_status')");
-									if($query){}
-									else{}
-									}
-									else{}
-
-									}
-									else{
-?>
 						Do you approve or reject this prank?
-						<br />
-						<form method="post" action="index.php">
-
-						<select name="approval_status">
-						<option value="Approved">Approved</option>
-						<option value="Rejected">Rejected</option>
-
-						</select>
-
-						<button type="submit" class="btn btn-default">Submit</button>
+						<div>
+						<form class="form-inline" method="post" action="edit.php?id=<?php echo $_GET['id'];?>">
+							<select class="form-control" name="approval_status">
+								<option value="Approved">Approved</option>
+								<option value="Rejected">Rejected</option>
+							</select>
+							<button type="submit" class="btn btn-primary">Submit</button>
+							<a class="btn btn-danger" href="index.php">Cancel</a>
 						</form>
-						<?php
-						}
-						?>
 					</div>
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>

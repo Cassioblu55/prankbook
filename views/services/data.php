@@ -4,7 +4,7 @@
 		
 	//Will return all pranks from all ids
 	if($_GET['get'] == 'Pranks'){
-		$query = "SELECT prank.*, users.username FROM prank INNER JOIN users ON users.id = prank.user_id;";
+		$query = "SELECT prank.*, users.username FROM prank INNER JOIN users ON users.id = prank.user_id WHERE approval_status='Approved';";
 		echo json_encode(runQuery($query));
 	}
 	

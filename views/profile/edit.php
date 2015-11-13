@@ -37,23 +37,23 @@ include_once $serverPath .'views/templates/head.php';
 					<div class="form-group">
 						<label for="prank_name">First Name</label> <input type="text"
 							class="form-control" name="firstname"
-							ng-model="user.firstname" required="required"
+							ng-model="user.firstname" 
 							placeholder="First Name" />
 					</div>
 					<div class="form-group">
 						<label for="prank_name">Last Name</label> <input type="text"
 							class="form-control" name="lastname"
-							ng-model="user.lastname" required="required"
+							ng-model="user.lastname"
 							placeholder="Last Name" />
 					</div>
 					<div class="form-group">
 						<label for="description">Email</label>
-						<input type="text" class="form-control" name="email" ng-model="user.email" placeholder="Email" />
+						<input type="text" class="form-control" name="email" ng-model="user.email" placeholder="Email" required="required"/>
 					</div>
 					<div class="form-group">
 						<label for="operating_range">Username</label> <input
 							type="text" class="form-control" name="username"
-							ng-model="user.username" placeholder="Username" />
+							ng-model="user.username" placeholder="Username" required="required"/>
 					</div>
 					<div class="form-group">
 						<label for="zipcode">Zipcode</label> <input type="number"

@@ -4,16 +4,17 @@
 	require_once  $serverPath.'utils/requireLogin.php';
 	require_once $serverPath.'utils/dataLookUp.php';
 		
-	//Will return all pranks from a given id
-	if($_GET['get'] == 'myPranks'){
-		$query = "SELECT * FROM prank;";
-		echo json_encode(runQuery($query));
+	if(!empty($_GET['get'])){
+		$get = $_GET['get'];
+		//Will return all unapproved pranks
+		if($get == 'unapprovedPranks'){
+			$query = "SELECT * FROM prank WHERE approval_status='Pending';";
+			echo json_encode(runQuery($query));
+		}
+		//Will return the approval status, prank name and username of all pranks
+		else if($get == "allPranks"){
+			$query = "SELECT prank.id, prank_name, username, approval_status FROM prank INNER JOIN users ON prank.user_id = users.id;";
+			echo json_encode(runQuery($query));
+		}	
 	}
-	
-	if(!empty($_GET['id'])){
-		$query = "SELECT * FROM prank WHERE id=".$_GET['id']." AND user_id=".$_SESSION['user']['id'].';';
-		echo json_encode(runQuery($query));
-	}
-	
-	
 ?>
