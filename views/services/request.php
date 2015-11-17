@@ -41,6 +41,10 @@
 					<div class="row">
 						<div class="col-md-4"><?php echo $prank['zipcode'];?></div>
 					</div>
+					<div class="form-group">
+							<h4>Date Requested<h4>
+							<input type="text" class="form-control" name="date_requested"/>
+							</div>
 					<div class="row">
 						<div class="col-md-7">
 							<form action="" method="post">
@@ -65,7 +69,7 @@
 			</div>
 			<div class="row">
 				<div class="col-md-7"align="center">
-					<button type="button" class="btn btn-primary btn-lg">Purchase</button>
+					<button type="button" class="btn btn-primary btn-lg" href="index.php">Purchase</button>
 				</div>
 			</div>
 		</div>
