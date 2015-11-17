@@ -1,11 +1,10 @@
 create table cc_info (
 	id int not null AUTO_INCREMENT,
-	cc_number varchar(45) not null,
-	cc_last varchar(4) not null,
-	security varchar(3) not null,
-	salt char(16) not null,
-	billing_address varchar(45) not null,
-	expiration_date int(4) not null,
-	user_id INT NOT NULL,
+	cc_number INT(16)  null,
+	cc_last INT(4)  null,
+	security INT(3)  null,
+	billing_address varchar(255) not null,
+	expiration_date char(4) null,
+	user_id INT(11) NOT NULL,
 	primary key(id)
 );
