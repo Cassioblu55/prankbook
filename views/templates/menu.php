@@ -39,6 +39,7 @@ if ( is_session_started() === FALSE ) session_start();
 							<li><a href="<?php echo $baseURL;?>views/services/purchased.php">My Orders</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/pranks/index.php">My Pranks</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/reviews/index.php">My Reviews</a></li>
+					        <li><a href="<?php echo $baseURL;?>views/cc/index.php">My Cards</a></li>
 					        <li role="separator" class="divider"></li>
 					        <li><a href="<?php echo $baseURL;?>views/profile/edit.php">Edit Profile</a></li>
 							<li><a ng-show="user.admin==1" href="<?php echo $baseURL;?>views/Admin/index.php">Adminstration</a></li>
