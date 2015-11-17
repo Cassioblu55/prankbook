@@ -2,11 +2,28 @@
 	require_once '../../config/config.php';
 	require_once  $serverPath.'utils/requireLogin.php';
 	require_once $serverPath.'utils/dataLookUp.php';
+	require_once $serverPath.'utils/dataUpdateInsert.php';
 	$query="SELECT * FROM prank where id=".$_GET['id'].";";
 	$prank=runQuery($query)[0];
 	
 	include_once $serverPath.'views/templates/head.php';
+	
+	$table = "services";
+	if(!empty($_POST) ){
+		$purchasedata = [ 
+			'cc_id' => 1,
+			'prank_id' => $_GET ['id'],
+			'user_id' => $_SESSION ['user'] ['id']
+			];
+		insert ( $table, $purchasedata );
+	}
+	else{
+		$query="SELECT * FROM services;";
+		$purchasedata=runQuery($query);		
+		}
 ?>
+
+
 <html>
 <body>
 <div>
@@ -42,12 +59,12 @@
 						<div class="col-md-4"><?php echo $prank['zipcode'];?></div>
 					</div>
 					<div class="form-group">
+							<form action="" method="post">
 							<h4>Date Requested<h4>
 							<input type="text" class="form-control" name="date_requested"/>
 							</div>
 					<div class="row">
 						<div class="col-md-7">
-							<form action="" method="post">
 							<div class="form-group">
 							<h4>Comments<h4>
 							<input type="text" class="form-control" name="comments"/>
@@ -68,8 +85,9 @@
 					</script>
 			</div>
 			<div class="row">
-				<div class="col-md-7"align="center">
-					<button type="button" class="btn btn-primary btn-lg" href="index.php">Purchase</button>
+				<div class="col-md-7" align="center">
+					<button type="submit" class ="btn btn-primary">Purchase</button>
+							</form>
 				</div>
 			</div>
 		</div>
