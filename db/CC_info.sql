@@ -1,6 +1,6 @@
 create table cc_info (
 	id int not null AUTO_INCREMENT,
-	cc_number INT(16)  null,
+	cc_number char(16)  null,
 	cc_last INT(4)  null,
 	security INT(3)  null,
 	billing_address varchar(255) not null,
