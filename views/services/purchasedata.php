@@ -4,7 +4,7 @@
 		
 	//Will return all pranks from all ids
 	if($_GET['get'] == 'services'){
-		$query = "SELECT * FROM services;";
+		$query = "SELECT * FROM services";
 		echo json_encode(runQuery($query));
 	}
 	

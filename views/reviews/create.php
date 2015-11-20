@@ -3,19 +3,21 @@ require_once '../../config/config.php';
 require_once $serverPath . 'utils/requireLogin.php';
 require_once $serverPath . 'utils/dataUpdateInsert.php';
 
-$table = "prank";
+$table = "reviews";
 if (! empty ( $_POST )) {
 	$data = [ 
 			'comments' => $_POST ['comments'],
-			'rating' => $_POST ['rating']
+			'rating' => $_POST ['rating'],
+			'service_id' => 1,
+			'user_id' => $_SESSION ['user'] ['id']
 	];
-	
 	if (empty ( $_GET ['id'] )) {
 		insert ( $table, $data );
 		$added = true;
 		header ( "Location: index.php" );
 		die ( "Redirecting to index.php" );
-	} else {
+	} 
+	else {
 		//Normal update cannot be used here becuase it would allow anyone who is logged in to update anyone elses prank
 		$update = "UPDATE " . $table . " SET ";
 		foreach ( $data as $columnName => $value ) {
@@ -27,6 +29,7 @@ if (! empty ( $_POST )) {
 		header ( "Location: index.php" );
 		die ( "Redirecting to index.php" );
 	}
+	
 }
 
 include_once $serverPath . 'views/templates/head.php';
@@ -34,7 +37,7 @@ include_once $serverPath . 'views/templates/head.php';
 
 <div ng-controller="prankAddEditController">
 	<form
-		action="edit.php<?php if(!empty($_GET['id'])){ echo "?id=".$_GET['id'];}?>"
+		action="create.php<?php if(!empty($_GET['id'])){ echo "?id=".$_GET['id'];}?>"
 		method="post">
 		<div class="col-md-6">
 			<div

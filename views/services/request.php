@@ -13,6 +13,9 @@
 		$purchasedata = [ 
 			'cc_id' => 1,
 			'prank_id' => $_GET ['id'],
+			//'date_request' => $_POST['date_requested'],
+			'price' => $_GET['price'],
+			//'comments' => $_POST['comments'],
 			'user_id' => $_SESSION ['user'] ['id']
 			];
 		insert ( $table, $purchasedata );
@@ -58,16 +61,20 @@
 					<div class="row">
 						<div class="col-md-4"><?php echo $prank['zipcode'];?></div>
 					</div>
-					<div class="form-group">
+					<div class="row">
+						<div class="col-md-7">
+							<div class="form-group">
 							<form action="" method="post">
 							<h4>Date Requested<h4>
-							<input type="text" class="form-control" name="date_requested"/>
+							<input type="text" class="form-control" placeholder="4/18/15" name="date_requested"/>
 							</div>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-md-7">
 							<div class="form-group">
 							<h4>Comments<h4>
-							<input type="text" class="form-control" name="comments"/>
+							<input type="text" class="form-control" placeholder="Comments" name="comments"/>
 							</div>
 						</div>
 					</div>
@@ -91,8 +98,59 @@
 				</div>
 			</div>
 		</div>
+		
 	</div>
 					
 </body>
+
+<div ng-controller="MyServicesController">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Reviews</h4>
+						<button type="button" ng-click="show = !show" class="btn btn-primary pull-right">{{(!show) ? "Show" : "Hide"}}</button>
+					</div>
+					<div class="panel-body well" ng-show="show">
+						
+						<div ui-grid="gridModel_allReviews"  external-scopes="$scope"  ng-if="show" style="height: 800px;"></div>
+						 
+					</div>
+					<div class="panel-footer">
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 					
 </html>
+<script>
+app.controller("MyServicesController", ['$scope', "$http" , function($scope, $http){
+	
+	$scope.show = false;
+	
+	$scope.gridModel_allReviews = {enableColumnResizing: true, showColumnFooter: true , enableSorting: false, rowHeight: 42};
+
+	$scope.gridModel_allReviews.columnDefs = [
+	                               	{field: 'username', enableColumnMenu: false, name: 'Name'},
+									{field: 'rating', enableColumnMenu: false, name: 'Rating'},
+									{field: 'comments', enableColumnMenu: false, name: 'comments'},
+								  ];
+
+	$scope.reloadGrid = function(){
+		$http.get('reviewdata.php?get=reviews').
+			then(function(response){
+				console.log(response);
+				$scope.gridModel_allReviews.data = response.data;
+				
+			});
+	}
+	
+	$scope.reloadGrid();
+	
+}]);
+
+</script>

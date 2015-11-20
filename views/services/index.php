@@ -12,7 +12,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading clearfix">
 						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">Pranks</h4>
-						<a href="<?php echo $baseURL;?>views/pranks/edit.php" class ="btn btn-primary pull-right">Add</a>
+						<a href="<?php echo $baseURL;?>views/pranks/edit.php" class ="btn btn-primary pull-right">Offer Prank</a>
 					</div>
 					<div class="panel-body">
 						<div ui-grid="gridModel" external-scopes="$scope" style="height: 400px;"></div>

@@ -32,15 +32,18 @@ app.controller("MyServicesController", ['$scope', "$http" , function($scope, $ht
 	$scope.gridModel = {enableFiltering: true, enableColumnResizing: true, showColumnFooter: true , enableSorting: false, showGridFooter: true, rowHeight: 42};
 
 	$scope.gridModel.columnDefs = [
-									{field: 'View',  enableColumnMenu: false, enableFiltering: false, width: 53, cellTemplate: '<a class="btn btn-primary" role="button" ng-href="prankid.php?id={{row.entity.id}}">View</a>'},
-	                               	{field: 'prank_name', enableColumnMenu: false, name: 'Name'},
+									{field: 'View',  enableColumnMenu: false, enableFiltering: false, width: 53, cellTemplate: '<a class="btn btn-primary" role="button" ng-href="request.php?id={{row.entity.id}}">View</a>'},
+	                               	{field: 'prank_id', enableColumnMenu: false, name: 'Name'},
 									{field: 'description', enableColumnMenu: false, name: 'Description'},
+									{field: 'price', enableColumnMenu: false, name: 'price'},
 									{field: 'firstname', enableColumnMenu: false, name: 'Pranker Name'},
+									{field: 'date_requested', enableColumnMenu: false, name: 'Date Requested'},
+									{field: 'comments', enableColumnMenu: false, name: 'comments'},
 									{field: 'Write Review',  enableColumnMenu: false, enableFiltering: false, width: 110, cellTemplate: '<a class="btn btn-primary" role="button" ng-href= "../reviews/create.php">Write Review</a>'}
 								  ];
 
 	$scope.reloadGrid = function(){
-		$http.get('data.php?get=Pranks').
+		$http.get('purchasedata.php?get=services').
 			then(function(response){
 				console.log(response);
 				$scope.gridModel.data = response.data;
