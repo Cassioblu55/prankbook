@@ -1,30 +1,33 @@
 <?php 
 	require_once '../../config/config.php';
-	include_once $serverPath.'views/templates/head.php';
+	include_once $serverPath.'utils/requireLogin.php';
+	include_once $serverPath.'utils/dataLookUp.php';
+	$id = $_SESSION['user']['id'];
+ 
+$query='select prank.prank_name, services.service_id from services inner join prank on services.prank_id=prank.id where services.user_id=' . $_SESSION['user']['id'] . ';';
+
+$results=runQuery($query);
+
+include_once $serverPath.'views/templates/head.php';
 ?>
-<div>This will show a list of messages.</div>
-<?php session_start();?>
+<div class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading clearfix">
+				<h3 class="panel-title pull-left">My Messages</h3>
+				</div>
+				<div class="panel-body">
+					<p>Please select an order you would like to message about</p>
+					<div class = "dropdown">
+						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">My Orders<span class = "caret"></span></button><ul class="dropdown-menu">
+							<?php 	foreach ($results as $result){echo "<li><a href=".$baseURL."views/Messages/edit.php?id='".$result->service_id ."'>".$result['prank_name'] ."</a></li>";}?>
+					</div>
 
-<div class = "dropdown">
-	<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">My services<span class = "caret"></span></button><ul class="dropdown-menu">
-			<li>Prank 1</li>		
-</div>
-<div id="user" style="display: none"><?php echo json_encode($_SESSION['user'])?></div>
-<script type="text/javascript">
-var user = JSON.parse(document.getElementById("user").textContent);
-app.controller("MenuController", ['$scope' , function($scope){
-	$scope.user = user;
-	if($scope.user && $scope.user.username){
-		$scope.myProfile = "Hello, "+$scope.user.username;
-	}
-	else{
-		$scope.myProfile = "Login";
-	}
-	
-}]);
-
-</script>
+				</div>
+			</div>
+		</div>
 
 
 
-<?php include_once $serverPath.'views/templates/footer.php';?>
+
+
+

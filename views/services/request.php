@@ -5,13 +5,14 @@
 	require_once $serverPath.'utils/dataUpdateInsert.php';
 	$query="SELECT * FROM prank where id=".$_GET['id'].";";
 	$prank=runQuery($query)[0];
-	
-	
 	$table = "services";
 	if(!empty($_POST) ){
 		$purchasedata = [ 
 			'cc_id' => 1,
 			'prank_id' => $_GET ['id'],
+			'date_requested' => $_POST['date_requested'],
+			'price' => $_GET['price'],
+			'comments' => $_POST['comments'],
 			'user_id' => $_SESSION ['user'] ['id']
 			];
 		insert ( $table, $purchasedata );
@@ -54,21 +55,28 @@
 							<div class="col-md-4"><?php echo $prank['zipcode'];?></div>
 						</div>
 						<div class="row">
-							<div class="form-group col-md-7"">
+							<div class="col-md-7">
+								<div class="form-group">
+								<form action="" method="post">
 								<h4>Date Requested<h4>
-								<input type="text" class="form-control" name="date_requested"/>
+								<input type="date" class="form-control" placeholder="4/18/15" name="date_requested"/>
+								</div>
 							</div>
 						</div>
 						<div class="row">
-							<div class="form-group col-md-7">
+							<div class="col-md-7">
+								<div class="form-group">
 								<h4>Comments<h4>
-								<input type="text" class="form-control" name="comments"/>
+								<input type="text" class="form-control" placeholder="Comments" name="comments"/>
+								</div>
 							</div>
 						</div>
-						<div align="center">
-							<button type="submit" class ="btn btn-primary">Purchase</button>
+						<div class="row">
+							<div align="center">
+								<button type="submit" class ="btn btn-primary">Purchase</button>
+							</div>
 						</div>
-				</div>
+					</div>
 			</div>
 			
 			</div>
