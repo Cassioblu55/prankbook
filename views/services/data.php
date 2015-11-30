@@ -15,7 +15,6 @@
 			$query = "SELECT * FROM services INNER JOIN (".$pranks.") AS prank ON services.prank_id=prank.id WHERE services.user_id=".$_SESSION['user']['id'].";";
 			echo json_encode(runQuery($query));
 		}
-		
 	}
 	else if(!empty($_GET['id'])){
 		$query = "SELECT * FROM prank WHERE id=".$_GET['id']." AND user_id=".$_SESSION['user']['id'].';';

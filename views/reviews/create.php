@@ -49,19 +49,17 @@ include_once $serverPath . 'views/templates/head.php';
 					<div class="form-group">
 						<label for="comments">Comments</label>
 						<textarea class="form-control" name="comments"
-							ng-model="reviews.comments" placeholder="Comments"></textarea>
+							ng-model="review.comments" required ="required" placeholder="Comments"></textarea>
 					</div>
 					<div class="form-group">
 						<label for="rating">Rating</label> <input type="number"
-							class="form-control" name="rating" ng-model="reviews.rating"
+							class="form-control" name="rating" ng-model="review.rating" required ="required" max="5" min="1"
 							placeholder="Rating(1-5)" />
 					</div>
 					<div class="form-group">
 						<button class="btn btn-primary" type="submit">{{saveOrUpdate}}</button>
 						<a class="btn btn-danger" href="index.php">Cancel</a>
 					</div>
-					<div style='<?php if($added){echo "color:#5cb85c";}else{echo "display:none";}?>'>Added
-						Review</div>
 				</div>
 			</div>
 		</div>
@@ -79,8 +77,8 @@ app.controller("prankAddEditController", ['$scope', "$http" , function($scope, $
 		$http.get('data.php?id='+prank).
 		then(function(response){
 			console.log(response);
-			$scope.prank = response.data[0];
-			$scope.prank.zipcode = Number($scope.prank.zipcode);
+			$scope.review = response.data[0];
+			$scope.review.rating = Number($scope.review.rating);
 			
 		});
 	}

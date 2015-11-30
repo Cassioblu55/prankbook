@@ -61,7 +61,6 @@ app.controller("MenuController", ['$scope' ,'$http' , function($scope, $http){
 		$http.get('<?php echo $baseURL;?>views/profile/data.php?get=myData').
 			then(function(response){
 				$scope.user = response.data;
-				console.log(response);
 				$scope.myProfile = "Hello, ";
 				if($scope.user.firstname && !$scope.user.lastname){
 					$scope.myProfile += $scope.user.firstname;
