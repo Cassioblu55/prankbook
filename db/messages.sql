@@ -3,7 +3,7 @@ create table messages (
 	id bigint(20) NOT NULL,
 	title varchar(255) NULL,
 	message text null,
-	time_sent timestamp DEFAULT CURRENT_TIMESTAMP,
+	time_sent timestamp null,
 	read varchar(3) DEFAULT 'No',
 	read_at timestamp NULL,
 	sent_from int(11) not null,
