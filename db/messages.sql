@@ -1,14 +1,12 @@
 DROP TABLE IF EXISTS messages;
 create table messages (
 	id bigint(20) NOT NULL,
-	id2 int(11) NOT NULL,
-	title varchar(256) NOT NULL,
-	user1 bigint(20) NOT NULL,
-	user2 bigint(20) NOT NULL,
-	message text NOT null,
-	timestamp int(10) not null,
-	user1read varchar(3) not null,
-	user2read varchar(3) not null,
+	title varchar(255) NULL,
+	message text null,
+	time_sent timestamp int(10) DEFAULT CURRENT_TIMESTAMP,
+	read varchar(3) default 'No',
+	from int(11) not null,
+	to int(11) not null,
 	service_id int not null,
 	primary key(id)
 );
