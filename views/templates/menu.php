@@ -53,7 +53,6 @@ if ( is_session_started() === FALSE ) session_start();
 		</div>
 	</nav>
 </div>
-<div style="display: hidden" id="loggedin"><?php ?>
 <script type="text/javascript">
 var loggedIn = <?php echo (!empty($_SESSION['user'])) ? "true" : "false";?>;
 app.controller("MenuController", ['$scope' ,'$http' , function($scope, $http){

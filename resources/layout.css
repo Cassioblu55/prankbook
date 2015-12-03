@@ -16,3 +16,21 @@ body {
   height: 60px;
   background-color: #f5f5f5;
 }
+
+.from_me{
+	border-radius: 25px;
+	padding: 12px;
+	color: white;
+	word-wrap: break-word;
+	background-color: #5b95ff;
+	margin-top: 5px;
+	
+}
+
+.to_me{
+	border-radius: 25px;
+	padding: 12px;
+	word-wrap: break-word;
+	background-color: #d2d6d6;
+	margin-top: 5px;
+}

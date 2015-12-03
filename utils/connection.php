@@ -33,4 +33,12 @@ function appendValues($list) {
 	}
 	return substr ( $s, 0, strlen ( $s ) - 1 ) . ")";
 }
+
+function arrayToString($array){
+	$string = '[';
+	foreach ($array as $a){
+		$string.=$a.',';
+	}
+	return substr ( $string, 0, strlen ( $string ) - 1 ) . "]";
+}
 ?>

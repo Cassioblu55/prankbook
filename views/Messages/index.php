@@ -1,31 +1,51 @@
 <?php 
 	require_once '../../config/config.php';
 	include_once $serverPath.'utils/requireLogin.php';
-	include_once $serverPath.'utils/dataLookUp.php';
-	$id = $_SESSION['user']['id'];
  
-$query='select prank.prank_name, services.id from services inner join prank on services.prank_id=prank.id where services.user_id=' . $_SESSION['user']['id'] . ';';
-
-$results=runQuery($query);
-
 include_once $serverPath.'views/templates/head.php';
 ?>
-<div class="container-fluid">
-		<div class="panel panel-default">
-			<div class="panel-heading clearfix">
-				<h3 class="panel-title pull-left">My Messages</h3>
-				</div>
-				<div class="panel-body">
-					<p>Please select an order you would like to message about</p>
-					<div class = "dropdown">
-						<button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">My Orders<span class = "caret"></span></button><ul class="dropdown-menu">
-							<?php 	foreach ($results as $result){echo "<li><a href=".$baseURL."views/Messages/edit.php?id=".$result['id'].">".$result['prank_name'] ."</a></li>";}?>
+<div ng-controller="MyMessagesController">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="panel panel-default">
+					<div class="panel-heading clearfix">
+						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">My Reviews</h4>
 					</div>
-
+					<div class="panel-body">
+						<div ui-grid="gridModel" external-scopes="$scope" style="height: 400px;"></div>
+					</div>
+					<div class="panel-footer">
+						
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 
+<script type="text/javascript">
+app.controller("MyMessagesController", ['$scope', "$http" , function($scope, $http){
+
+	$scope.gridModel = {enableFiltering: true, enableColumnResizing: true, showColumnFooter: true , enableSorting: false, showGridFooter: true, rowHeight: 42};
+
+	$scope.gridModel.columnDefs = [
+					{field: 'Show', name: '',  enableColumnMenu: false, enableFiltering: false, width: 75, cellTemplate: '<a class="btn btn-primary" role="button" ng-href="thread.php?thread_id={{row.entity.thread_id}}">Show {{row.entity.thread_id}}</a>'},
+					{field: 'prank_name', enableColumnMenu: false, name: 'Prank Name'},
+					{field: 'username', enableColumnMenu: false}
+
+		                           	];
+
+	$http.get('data.php?get=grid').
+	then(function(response){
+		console.log(response);
+		$scope.gridModel.data = response.data;
+		
+	});
+	
+}]);
+
+</script>
 
 
 
