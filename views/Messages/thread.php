@@ -24,8 +24,7 @@
 				<div class="row col-md-12" ng-repeat='message in thread'>
 					<div ng-class="(user.id==message.is_from) ? 'pull-right' : 'pull-left'">
 						<div ng-class="(user.id==message.is_from) ? 'from_me' : 'to_me'" class="row">{{message.message}}</div>
-						<div class="row" ng-show="message.is_read=='Yes' && user.id != message.is_from">Seen at {{format(message.read_at)}}</div>
-						
+						<div ng-show="user.id == message.is_from">{{(message.is_read=='Yes') ? 'Seen at'+format(message.read_at) : 'Sent'}}</div>
 					</div>
 				</div>
 				

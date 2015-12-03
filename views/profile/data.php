@@ -19,7 +19,7 @@
 			echo json_encode(runQuery($query));
 		}
 		else if($get =='unreadMessages'){
-			$query = "SELECT service_id AS thread_id, users.username, title, time_sent FROM messages INNER JOIN users ON users.id = is_from WHERE is_read = 'No' AND is_to=".$_SESSION['user']['id'].";";
+			$query = "SELECT service_id AS thread_id, users.username, message, time_sent FROM messages INNER JOIN users ON users.id = is_from WHERE is_read = 'No' AND is_to=".$_SESSION['user']['id'].";";
 			echo json_encode(runQuery($query));
 		}
 		else if($get == 'myReviews'){

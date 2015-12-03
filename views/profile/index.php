@@ -74,9 +74,9 @@ app.controller('TimelineController', ['$scope', "$http" , function($scope, $http
              					  ];
 
 	$scope.messagesGrid.columnDefs = [
-	                                 	{field: 'Show', enableFiltering: false, name: '', enableColumnMenu: false, width: 70, cellTemplate: '<a class="btn btn-primary" role="button" href="<?php echo $baseURL?>views/Massages/thread.php?id={{row.entity.thread_id}}">Replay</a>'},
-	                                    	{field: 'title', enableColumnMenu: false},
+	                                 	{field: 'Show', enableFiltering: false, name: '', enableColumnMenu: false, width: 70, cellTemplate: '<a class="btn btn-primary" role="button" href="<?php echo $baseURL?>views/Messages/thread.php?thread_id={{row.entity.thread_id}}">Replay</a>'},
 		             						{field: 'username', enableColumnMenu: false},
+	                                    	{field: 'message', enableColumnMenu: false},
 	                                    	{field: 'time_sent', enableColumnMenu: false}
 	             					  ];
 	
@@ -96,7 +96,7 @@ app.controller('TimelineController', ['$scope', "$http" , function($scope, $http
 
 		$http.get('data.php?get=unreadMessages').
 		then(function(response){
-			//console.log(response);
+			console.log(response);
 				$scope.messagesGrid.data = response.data;
 			
 		});
