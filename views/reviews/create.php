@@ -1,5 +1,6 @@
 <?php
 require_once '../../config/config.php';
+require_once $serverPath.'utils/dataLookUp.php';
 require_once $serverPath . 'utils/requireLogin.php';
 require_once $serverPath . 'utils/dataUpdateInsert.php';
 

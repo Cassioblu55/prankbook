@@ -17,3 +17,29 @@ include_once $serverPath . 'views/templates/head.php';
 		</div>
 	</div>
 </div>
+<div class="container-fluid">
+	<div class="panel panel-default">
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">Creators of the Website</h3>
+		</div>
+		<div class="panel-body">
+			<p>Cassio Hudson</p>		
+			<p>Conrad Metz</p>		
+			<p>Daycara Anderson</p>		
+		</div>
+		
+	</div>
+</div>
+<div class="container-fluid">
+	<div class="panel panel-default">
+		<div class="panel-heading clearfix">
+			<h3 class="panel-title pull-left">Contact Administrators</h3>
+		</div>
+		<div class="panel-body">
+			<p>prankbook@gmail.com</p>
+			<p>111-111-1111</p>			
+		</div>
+	</div>
+</div>
+
+<?php include_once $serverPath.'views/templates/footer.php';?>

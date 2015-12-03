@@ -16,9 +16,9 @@ $results=runQuery($query);
 $table = "messages";
 if (! empty ( $_POST )) {
 	$data = [ 
-			'title' => $_POST ['prank.prank_name'],
-			'id2' => $_POST['services.user_id'],
-			'id' => $_SESSION ['user'] ['id']
+			'message' => $_POST ['message'],
+			'sent_to' => $_POST['services.user_id'],
+			'sent_from' => $_SESSION ['user'] ['id']
 	];
 	if (empty ( $_GET ['id'] )) {
 		insert ( $table, $data );

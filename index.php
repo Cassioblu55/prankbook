@@ -14,6 +14,9 @@ include_once $serverPath . 'views/templates/head.php';
 			<p>Click the "Get Prank" Button above and start on your worldwind adventure. You'll laugh, your friends might cry and if your not careful you just might learn something.</p>
 			<a href="<?php echo $baseURL;?>views/info/aboutUs.php">About Us</a>
 		</div>
+		<div>
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/bAACPEecQ3Q" frameborder="0" allowfullscreen></iframe>
+		</div>
 	</div>
 </div>
 
