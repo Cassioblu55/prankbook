@@ -16,7 +16,8 @@
             // exercise for you to implement yourself. 
             die("Please enter a username."); 
         } 
-         
+
+		 
         // Ensure that the user has entered a non-empty password 
         if(empty($_POST['password']) || empty($_POST['password2'])) 
         { 
@@ -34,7 +35,7 @@
         { 
             die("Invalid E-Mail Address"); 
         } 
-         
+		
         // We will use this SQL query to see whether the username entered by the 
         // user is already in use.  A SELECT query is used to retrieve data from the database. 
         // :username is a special token, we will substitute a real value in its place when 
@@ -215,6 +216,10 @@
 				<div class="form-group">
 					<label for="password2">Confirm Password</label>
 					<input type="password" class="form-control" required="required" name="password2" value="" placeholder="Confirm Password">
+				</div>
+				<div class="form-group">
+					<label for="checkbox">Please read the terms and liability contract below and check the box afterwards</label>
+					<input type="checkbox" required="required" name="check1" value="terms and liability">&nbsp<a href="<?php echo $baseURL;?>views/login/terms.php"">Terms</a>&nbspand&nbsp<a href="<?php echo $baseURL;?>views/login/liability.php"">Liability Contract</a><br>
 				</div>
 				<div class="form-group">
 					<button class="btn btn-default" type="submit">Create Account</button>

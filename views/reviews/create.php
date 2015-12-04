@@ -4,15 +4,20 @@ require_once $serverPath.'utils/dataLookUp.php';
 require_once $serverPath . 'utils/requireLogin.php';
 require_once $serverPath . 'utils/dataUpdateInsert.php';
 
+$query="SELECT * FROM prank where id=".$_GET['id'].";";
+$prank=runQuery($query)[0];
 $table = "reviews";
 if (! empty ( $_POST )) {
 	$data = [ 
 			'comments' => $_POST ['comments'],
 			'rating' => $_POST ['rating'],
-			'service_id' => 1,
+			'prank_id' => $_GET['id'],
 			'user_id' => $_SESSION ['user'] ['id']
 	];
-	if (empty ( $_GET ['id'] )) {
+		insert ( $table, $data );
+		header ( "Location: ".$baseURL."views/reviews/index.php" );
+		die ( "Redirecting to index.php" );
+	/*if (empty ( $_GET ['id'] )) {
 		insert ( $table, $data );
 		$added = true;
 		header ( "Location: index.php" );
@@ -29,7 +34,7 @@ if (! empty ( $_POST )) {
 		runInsert ( $update );
 		header ( "Location: index.php" );
 		die ( "Redirecting to index.php" );
-	}
+	}*/
 	
 }
 
@@ -58,7 +63,7 @@ include_once $serverPath . 'views/templates/head.php';
 							placeholder="Rating(1-5)" />
 					</div>
 					<div class="form-group">
-						<button class="btn btn-primary" type="submit">{{saveOrUpdate}}</button>
+						<button class="btn btn-primary" type="submit">Save</button>
 						<a class="btn btn-danger" href="index.php">Cancel</a>
 					</div>
 				</div>

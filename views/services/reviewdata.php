@@ -13,7 +13,7 @@
 		echo json_encode(runQuery($query));
 	}
 	if(!empty($_GET['reviewsByPrank'])){
-		$query = "SELECT reviews.*, users.username FROM reviews INNER JOIN users ON users.id = reviews.user_id WHERE service_id=".$_GET['reviewsByPrank'];
+		$query = "SELECT reviews.*, users.username FROM reviews INNER JOIN users ON users.id = reviews.user_id WHERE prank_id=".$_GET['reviewsByPrank'];
 		echo json_encode(runQuery($query));
 		
 	}

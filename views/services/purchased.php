@@ -3,6 +3,8 @@
 	require_once $serverPath.'utils/dataLookUp.php';
 
 	include_once $serverPath.'views/templates/head.php';
+	$query="SELECT * FROM prank where id=".$_GET['id'].";";
+	
 ?>
 
 <div ng-controller="MyServicesController">
@@ -39,7 +41,7 @@ app.controller("MyServicesController", ['$scope', "$http" , function($scope, $ht
 									{field: 'username', enableColumnMenu: false, name: 'Pranker Name'},
 									{field: 'date_requested', enableColumnMenu: false, name: 'Date Requested'},
 									{field: 'comments', enableColumnMenu: false, name: 'comments'},
-									{field: 'Write Review',  enableColumnMenu: false, enableFiltering: false, width: 110, cellTemplate: '<a class="btn btn-primary" role="button" ng-href= "../reviews/create.php">Write Review</a>'}
+									{field: 'Write Review',  enableColumnMenu: false, enableFiltering: false, width: 110, cellTemplate: '<a class="btn btn-primary" role="button" ng-href= "../reviews/create.php?id={{row.entity.id}}">Write Review</a>'}
 								  ];
 
 	$scope.reloadGrid = function(){
