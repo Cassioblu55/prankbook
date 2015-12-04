@@ -23,8 +23,8 @@
 			echo json_encode(runQuery($query));
 		}
 		else if($get == 'myReviews'){
-			$base = "SELECT id, rating, user_id, comments, prank_name FROM reviews INNER JOIN (SELECT prank_name, services.id as request_id, prank_id FROM services INNER JOIN prank ON services.prank_id = prank.id) as services ON services.request_id = reviews.service_id WHERE prank_id IN(SELECT id FROM prank WHERE user_id =".$_SESSION['user']['id'].")";
-			$query = "SELECT base.id, prank_name, rating, comments, username FROM users INNER JOIN (".$base.") AS base ON base.user_id = users.id;";
+			$base = "SELECT reviews.id, rating, reviews.user_id, prank_id, comments, prank_name FROM reviews INNER JOIN prank ON prank.id = reviews.prank_id WHERE prank_id IN(SELECT id FROM prank WHERE user_id =".$_SESSION['user']['id'].")";
+			$query = "SELECT base.id, prank_name, rating, comments, username FROM users INNER JOIN (".$base.") AS base ON base.user_id = users.id;";			
 			echo json_encode(runQuery($query));
 			
 		}
