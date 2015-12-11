@@ -86,8 +86,10 @@
 								</div>
 							</div>
 						</div>
+					</form>
 				</div>
 				</div>
+<<<<<<< BEGIN MERGE CONFLICT: local copy shown first <<<<<<<<<<<<<<<
 				<div class="col-md-4">
 						<script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
 						<div style="overflow:hidden;height:500px;width:600px;"><div id="gmap_canvas" style="height:300px;width:400px"></div>
@@ -101,6 +103,29 @@
 				</div>
 			</div>
 		</form>
+======= COMMON ANCESTOR content follows ============================
+				<div class="col-md-4">
+						<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+						<div style="overflow:hidden;height:500px;width:600px;"><div id="gmap_canvas" style="height:300px;width:400px"></div>
+						<style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
+						<a class="google-map-code" href="http://premium-wordpress-themes.org" id="get-map-data"></a></div>
+						<script type="text/javascript"> function init_map(){var myOptions = {zoom:14,center:new google.maps.LatLng(41.69992260000001,-91.58869659999999),
+						mapTypeId: google.maps.MapTypeId.ROADMAP};map = new google.maps.Map(document.getElementById("gmap_canvas"),
+						myOptions);marker = new google.maps.Marker({map: map,position: new google.maps.LatLng(41.69992260000001, -91.58869659999999)});infowindow = new google.maps.InfoWindow({content:"<b></b><br/><br/>52241 " });
+						google.maps.event.addListener(marker, "click", function(){infowindow.open(map,marker);});infowindow.open(map,marker);}google.maps.event.addDomListener(window, 'load', init_map);
+						</script>
+				</div>
+			</div>
+		</form>
+======= MERGED IN content follows ==================================
+				
+				<div class="col-md-3"> 
+				<iframe frameborder="0" scrolling="yes" marginheight="0" marginwidth="0"width="642" height="443" src="https://maps.google.com/maps?hl=en&q=<?php echo $prank['zipcode']; ?>&ie=UTF8&t=roadmap&z=12&iwloc=B&output=embed"><div></iframe>
+		
+			
+						
+				
+>>>>>>> END MERGE CONFLICT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 	</div>
 
 	<div class="container-fluid">
