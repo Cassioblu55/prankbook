@@ -11,11 +11,12 @@ function update($table, $data) {
 //Will update but with custon constraints like user_id = $_Session[user][id] or something
 //Used when you dont want a user to update something they should be able to chnage like someone elses review
 function updateWithConstratints($table, $data, $constraints){
-	$update = makeBaseUpdate($table, $data)." ";
+	$update = makeBaseUpdate($table, $data)." WHERE";
 	foreach ($constraints as $columnName => $value){
-		$update .= "WHERE ".$columnName."='".$value."' AND ";
+		$update .= " ".$columnName."='".$value."' AND ";
 	}
 	$update = substr($update, 0,strlen($update)-4).";";
+	echo $update;
 	runInsert($update);
 	
 }

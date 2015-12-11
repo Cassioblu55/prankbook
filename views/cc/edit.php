@@ -20,7 +20,7 @@
 			insert ( $table, $data );
 		}else{
 			//Will update credit card of given id
-			$constraints = ['id' => $_SESSION['user']['id']];
+			$constraints = ['user_id' => $_SESSION['user']['id'], 'id' => $_GET['id']];
 			updateWithConstratints($table, $data, $constraints);
 		}
 		header ( "Location: index.php" );
@@ -75,7 +75,6 @@ app.controller("CreditCardAddEditController", ['$scope', "$http" , function($sco
 			$scope.card = response.data;
 			$scope.card.expiration_date = Number($scope.card.expiration_date);
 			$scope.card.security = Number($scope.card.security);
-			$scope.card.cc_number = Number($scope.card.cc_number);
 			$scope.addEdit = "Edit";
 			$scope.saveUpdate = "Update";
 		}
