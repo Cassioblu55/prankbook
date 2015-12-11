@@ -4,6 +4,8 @@
 
 	include_once $serverPath.'views/templates/head.php';
 	$query="SELECT * FROM prank where id=".$_GET['id'].";";
+	$run = "SELECT * FROM reviews";
+	
 	
 ?>
 
@@ -28,6 +30,7 @@
 </div>
 
 <?php include_once $serverPath.'views/templates/footer.php';?>
+
 
 <script>
 app.controller("MyServicesController", ['$scope', "$http" , function($scope, $http){
@@ -58,4 +61,3 @@ app.controller("MyServicesController", ['$scope', "$http" , function($scope, $ht
 }]);
 
 </script>
-
