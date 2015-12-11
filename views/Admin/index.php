@@ -2,11 +2,12 @@
 	require_once '../../config/config.php';
 	require_once  $serverPath.'utils/requireAdmin.php';
 	require_once $serverPath.'utils/dataLookUp.php';
-		
+	//this is the header and menu file
 	include_once $serverPath.'views/templates/head.php';
 ?>
 
 <div ng-controller="MyServicesController">
+<!--this is showing all the pranks that need to be approved or rejected-->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-12">
@@ -30,6 +31,7 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading clearfix">
+					<!--this is showing all the pranks that are approved or rejected-->
 						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">List of All Pranks</h4>
 						<button type="button" ng-click="show = !show" class="btn btn-primary pull-right">{{(!show) ? "Show" : "Hide"}}</button>
 						</div>
@@ -89,5 +91,6 @@ app.controller("MyServicesController", ['$scope', "$http" , function($scope, $ht
 </script>
 
 
-<?php include_once $serverPath.'views/templates/footer.php';?>
+<?php include_once $serverPath.'views/templates/footer.php';
+//this is the footer file?>
 

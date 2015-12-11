@@ -22,6 +22,7 @@
 ?>
 
 <div>
+<!--this is the table that shows more information about the prank that is being approved or rejected-->
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-6">
@@ -40,6 +41,7 @@
 					<div class="panel-footer">
 						Do you approve or reject this prank?
 						<div>
+						<!--this is the drop down menu that the admin can approve or reject the prank-->
 						<form class="form-inline" method="post" action="edit.php?id=<?php echo $_GET['id'];?>">
 							<select class="form-control" name="approval_status">
 								<option value="Approved">Approved</option>
@@ -57,5 +59,6 @@
 	</div>
 </div>
 
-<?php include_once $serverPath.'views/templates/footer.php';?>
+<?php include_once $serverPath.'views/templates/footer.php';
+//this is grabbing the footer file?>
 

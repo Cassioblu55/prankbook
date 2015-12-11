@@ -195,6 +195,7 @@
     
 ?> 
 <form action="register.php" method="post">
+<!--this is the form the user will fill out to create an account-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -218,6 +219,7 @@
 					<input type="password" class="form-control" required="required" name="password2" value="" placeholder="Confirm Password">
 				</div>
 				<div class="form-group">
+				<!-- this is the check box and show the terms and liability contract, where the user has to check the box to move forward-->
 					<label for="checkbox">Please read the terms and liability contract below and check the box afterwards</label>
 					<input type="checkbox" required="required" name="check1" value="terms and liability">&nbsp<a href="<?php echo $baseURL;?>views/login/terms.php"">Terms</a>&nbspand&nbsp<a href="<?php echo $baseURL;?>views/login/liability.php"">Liability Contract</a><br>
 				</div>
@@ -229,4 +231,5 @@
 	</div>
 </form>
 	
-<?php include_once '../templates/footer.php';?>
+<?php include_once '../templates/footer.php';
+//this is the footer file?>

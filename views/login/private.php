@@ -3,6 +3,7 @@
     require_once $serverPath."utils/requireLogin.php";
 
     include_once $serverPath.'views/templates/head.php';
+	//this is the header and menu file
     
 ?> 
 Hello <?php echo htmlentities($_SESSION['user']['username'], ENT_QUOTES, 'UTF-8'); ?>, secret content!<br /> 

@@ -1,6 +1,7 @@
 <?php
 // This will be the main landing page
 require_once '../../config/config.php';
+//this is the header and menu file
 include_once $serverPath . 'views/templates/head.php';
 ?>
 <div class="container-fluid">
@@ -9,6 +10,7 @@ include_once $serverPath . 'views/templates/head.php';
 			<h3 class="panel-title pull-left">About Us</h3>
 		</div>
 		<div class="panel-body">
+		<!--this are some quotes about pranks-->
 			<p>Prankbook started with a humble dream:</p>
 			<p>"I love likes watching prank videos on Youtube. But wouldn't it be better if the people in the videos were my friends, family, or coworkers?"</p>
 			<p>From this simple idea sprang prankbook. The worlds first (as far as I know) prankster connection site. Where the worlds most promante pranksters will be able to apply there craft and people from all over the world will be able to get top quaility pranks for a reasonable price.</p>
@@ -22,6 +24,7 @@ include_once $serverPath . 'views/templates/head.php';
 		<div class="panel-heading clearfix">
 			<h3 class="panel-title pull-left">Creators of the Website</h3>
 		</div>
+		<!--this is the creators of the website-->
 		<div class="panel-body">
 			<p>Cassio Hudson</p>		
 			<p>Conrad Metz</p>		
@@ -33,6 +36,7 @@ include_once $serverPath . 'views/templates/head.php';
 <div class="container-fluid">
 	<div class="panel panel-default">
 		<div class="panel-heading clearfix">
+		<!--this is how you can contact the administrators-->
 			<h3 class="panel-title pull-left">Contact Administrators</h3>
 		</div>
 		<div class="panel-body">
@@ -42,4 +46,5 @@ include_once $serverPath . 'views/templates/head.php';
 	</div>
 </div>
 
-<?php include_once $serverPath.'views/templates/footer.php';?>
+<?php include_once $serverPath.'views/templates/footer.php';
+//this the the footer file?>

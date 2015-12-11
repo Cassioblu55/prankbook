@@ -1,6 +1,7 @@
 <!doctype html>
 <html ng-app="app">
 <head>
+<!--this the header file and is pulling in all the jquery-->
 
 
 	<script src="<?php echo $baseURL?>resources/jquery/dist/jquery.js"></script>
@@ -18,5 +19,6 @@
 <script> var app = angular.module('app',['ui.grid']);</script>
 <?php 
 	include_once $serverPath.'views/templates/menu.php';
-?>
+	//this is pulling in the menu bar file
+	?>
 

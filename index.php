@@ -1,6 +1,7 @@
 <?php
 // This will be the main landing page
 require_once 'config/config.php';
+//this grabs the header and menu file
 include_once $serverPath . 'views/templates/head.php';
 ?>
 
@@ -15,6 +16,7 @@ include_once $serverPath . 'views/templates/head.php';
 			<a href="<?php echo $baseURL;?>views/info/aboutUs.php">About Us</a>
 		</div>
 		<div>
+		<!--this is the video that is embedded on the home page-->
 			<iframe width="560" height="315" src="https://www.youtube.com/embed/bAACPEecQ3Q" frameborder="0" allowfullscreen></iframe>
 		</div>
 	</div>
@@ -22,4 +24,5 @@ include_once $serverPath . 'views/templates/head.php';
 
 
 
-<?php include_once $serverPath.'views/templates/footer.php';?>
+<?php include_once $serverPath.'views/templates/footer.php';
+//this grabs the footer file?>

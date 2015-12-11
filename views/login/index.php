@@ -96,8 +96,10 @@ if (! empty ( $_POST )) {
 }
 
 require_once $serverPath.'views/templates/head.php';
+//this is the header and menu file
 ?>
 <form action="index.php" method="post">
+<!--this the login information about to enter to be able to login-->
 	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
@@ -122,4 +124,5 @@ require_once $serverPath.'views/templates/head.php';
 		</div>
 	</div>
 </form>
-<?php include_once $serverPath.'views/templates/footer.php';?>
+<?php include_once $serverPath.'views/templates/footer.php';
+//this is the footer file?>

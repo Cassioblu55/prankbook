@@ -1,4 +1,5 @@
 <?php 
+//this is checking if the user is logged in and if so the bar changes
 function is_session_started()
 {
     if ( php_sapi_name() !== 'cli' ) {
@@ -25,14 +26,17 @@ if ( is_session_started() === FALSE ) session_start();
 		<div class="container-fluid" style="background-color: honeydew;">
 			<!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
+			<!--this links to the homepage-->
 				<a class="navbar-brand" href="<?php echo $baseURL;?>">Prankbook</a> 
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
+				<!--this is the options on top of the page-->
 					<li><a href="<?php echo $baseURL;?>views/services/">Get Prank</a></li>
 					<li><a href="<?php echo $baseURL;?>views/pranks/edit.php">Give Prank</a></li>
 				</ul>	
 				<div class="collapse navbar-collapse navbar-right">
+				<!--this is all the options in the dropdown menu-->
 					<ul class="nav navbar-nav">
 						<li><a href="<?php echo $baseURL;?>views/login/" ng-hide="user">Login</a></li>
 						<li><a href="<?php echo $baseURL;?>views/login/register.php" ng-hide="user">Create Account</a></li>
