@@ -12,7 +12,8 @@ if (! empty ( $_POST )) {
 			'comments' => $_POST ['comments'],
 			'rating' => $_POST ['rating'],
 			'prank_id' => $_GET['id'],
-			'user_id' => $_SESSION ['user'] ['id']
+			'user_id' => $_SESSION ['user'] ['id'],
+			'reviewed' => 0
 	];
 		insert ( $table, $data );
 		header ( "Location: ".$baseURL."views/reviews/index.php" );
