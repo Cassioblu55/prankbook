@@ -19,6 +19,8 @@ function connectSpecific($db_host, $db_user, $db_password, $db_name, $options) {
 	}
 	return $db;
 }
+
+//Used by other functions to create a string from a list used when generating update sql
 function appendColumns($list) {
 	$s = "(";
 	foreach ( $list as $row ) {
@@ -26,6 +28,7 @@ function appendColumns($list) {
 	}
 	return substr ( $s, 0, strlen ( $s ) - 1 ) . ")";
 }
+ 
 function appendValues($list) {
 	$s = "(";
 	foreach ( $list as $row ) {
@@ -34,6 +37,7 @@ function appendValues($list) {
 	return substr ( $s, 0, strlen ( $s ) - 1 ) . ")";
 }
 
+//Will convert array to string
 function arrayToString($array){
 	$string = '[';
 	foreach ($array as $a){

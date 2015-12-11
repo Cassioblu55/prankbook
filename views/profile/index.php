@@ -1,4 +1,6 @@
 <?php
+//Shows most important information for the user, this will act as there dashboard, managing reviews for there pranks and showing
+//them unread messages as well as pranks that are being requested
 require_once '../../config/config.php';
 require_once $serverPath . 'utils/requireLogin.php';
 include_once $serverPath . 'views/templates/head.php';
@@ -67,14 +69,13 @@ app.controller('TimelineController', ['$scope', "$http" , function($scope, $http
 		                					  ];
 
 	$scope.requestGrid.columnDefs = [
-                                 	{field: 'Show', enableFiltering: false, name: '', enableColumnMenu: false, width: 65, cellTemplate: '<a class="btn btn-primary" role="button" href="manageRequest.php?id={{row.entity.id}}">Show</a>'},
                                     	{field: 'username', enableColumnMenu: false},
 	             						{field: 'prank_name', enableColumnMenu: false},
                                     	{field: 'comments', enableColumnMenu: false}
              					  ];
 
 	$scope.messagesGrid.columnDefs = [
-	                                 	{field: 'Show', enableFiltering: false, name: '', enableColumnMenu: false, width: 70, cellTemplate: '<a class="btn btn-primary" role="button" href="<?php echo $baseURL?>views/Messages/thread.php?thread_id={{row.entity.thread_id}}">Replay</a>'},
+	                                 	{field: 'Show', enableFiltering: false, name: '', enableColumnMenu: false, width: 70, cellTemplate: '<a class="btn btn-primary" role="button" href="<?php echo $baseURL?>views/Messages/thread.php?thread_id={{row.entity.thread_id}}">Reply</a>'},
 		             						{field: 'username', enableColumnMenu: false},
 	                                    	{field: 'message', enableColumnMenu: false},
 	                                    	{field: 'time_sent', enableColumnMenu: false}

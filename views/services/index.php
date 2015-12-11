@@ -29,7 +29,9 @@
 <?php include_once $serverPath.'views/templates/footer.php';?>
 
 <script>
-app.controller("MyServicesController", ['$scope', "$http" , function($scope, $http){
+app.controller("MyServicesController", ['$scope', "$http", "$controller" , function($scope, $http, $controller){
+	angular.extend(this, $controller('MenuController', {$scope: $scope}));
+	
 	$scope.gridModel = {enableFiltering: true, enableColumnResizing: true, showColumnFooter: true , enableSorting: false, showGridFooter: true, rowHeight: 42};
 
 	$scope.gridModel.columnDefs = [
@@ -45,11 +47,24 @@ app.controller("MyServicesController", ['$scope', "$http" , function($scope, $ht
 	$scope.reloadGrid = function(){
 		$http.get('data.php?get=Pranks').
 			then(function(response){
-				console.log(response);
+				//console.log(response);
 				$scope.gridModel.data = response.data;
 				
 			});
 	}
+
+	$scope.$watch('user.username', function(val){
+		if(val){
+			var pranks = [];
+			for(var i=0; i<$scope.gridModel.data.length; i++){
+				var prank = $scope.gridModel.data[i];
+				if(prank.username != val){
+					pranks.push(prank);
+				}
+			}	
+			$scope.gridModel.data = pranks;
+		}
+	});
 	
 	$scope.reloadGrid();
 	

@@ -1,12 +1,15 @@
 <?php
 include_once $serverPath . 'utils/connection.php';
 
+//Will update table with given data where id equals the id from the url
 function update($table, $data) {
 	$update = makeBaseUpdate($table, $data)." WHERE id=".$_GET['id'].";";
 	echo $update;
 	runInsert($update);
 }
 
+//Will update but with custon constraints like user_id = $_Session[user][id] or something
+//Used when you dont want a user to update something they should be able to chnage like someone elses review
 function updateWithConstratints($table, $data, $constraints){
 	$update = makeBaseUpdate($table, $data)." ";
 	foreach ($constraints as $columnName => $value){
@@ -17,6 +20,7 @@ function updateWithConstratints($table, $data, $constraints){
 	
 }
 
+//used by two above functions
 function makeBaseUpdate($table, $data){
 	$update = "UPDATE " . $table." SET ";
 	foreach ( $data as $columnName => $value ) {
@@ -25,7 +29,7 @@ function makeBaseUpdate($table, $data){
 	return substr($update, 0,strlen($update)-2);
 }
 
-
+//Will take array of data and table name in insert into that table
 function insert($table, $data) {
 	$columns = " (";
 	$values = " (";
@@ -40,6 +44,7 @@ function insert($table, $data) {
 	runInsert ( $insert );
 }
 
+//Runs sql statment, returns nothing
 function runInsert($insert) {
 	$db = connect ();
 	try {

@@ -5,6 +5,7 @@
 	
 	if(!empty($_POST)){
 		$table = "cc_info";
+		//Finds the last 4 digits of the creidt card using the posted credit card number
 		$lastFour =intval(substr(strval($_POST['cc_number']), 12, 16));
 		$data = [
 				"cc_number" => $_POST['cc_number'],
@@ -14,10 +15,11 @@
 				"expiration_date" => $_POST['expiration_date'],
 				"user_id" => $_SESSION['user']['id']
 		];
-		
+		//Will add new entry if no id in url
 		if(empty($_GET['id'])){
 			insert ( $table, $data );
 		}else{
+			//Will update credit card of given id
 			$constraints = ['id' => $_SESSION['user']['id']];
 			updateWithConstratints($table, $data, $constraints);
 		}
@@ -65,8 +67,10 @@ include_once $serverPath .'views/templates/head.php';
 <script type="text/javascript">
 app.controller("CreditCardAddEditController", ['$scope', "$http" , function($scope, $http){
 
+	//Request data from data.php
 	$http.get('data.php<?php if(!empty($_GET['id'])){echo '?id='.$_GET['id'];}?>').
 	then(function(response){
+		//Populate data if returned
 		if(response.data){
 			$scope.card = response.data;
 			$scope.card.expiration_date = Number($scope.card.expiration_date);

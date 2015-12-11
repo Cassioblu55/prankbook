@@ -10,7 +10,7 @@ include_once $serverPath.'views/templates/head.php';
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading clearfix">
-						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">My Reviews</h4>
+						<h4 class="panel-title pull-left" style="padding-top: 7.5px;">My Messages</h4>
 					</div>
 					<div class="panel-body">
 						<div ui-grid="gridModel" external-scopes="$scope" style="height: 400px;"></div>

@@ -1,4 +1,5 @@
 <?php
+//This page simply shows all the credit cards for a given user
 	include_once '../../config/config.php';
 	require_once $serverPath . 'utils/requireLogin.php';
 	

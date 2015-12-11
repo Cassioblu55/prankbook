@@ -89,7 +89,7 @@
 				</div>
 				</div>
 				<div class="col-md-4">
-						<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+						<script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
 						<div style="overflow:hidden;height:500px;width:600px;"><div id="gmap_canvas" style="height:300px;width:400px"></div>
 						<style>#gmap_canvas img{max-width:none!important;background:none!important}</style>
 						<a class="google-map-code" href="http://premium-wordpress-themes.org" id="get-map-data"></a></div>

@@ -53,6 +53,7 @@ app.controller('ThreadController', ['$scope', "$http","$controller" , function($
 	angular.extend(this, $controller('MenuController', {$scope: $scope}));
 	
 	var thread_id = getUrlParam('thread_id');
+	//Will run when a message is sent posting the message content to the database without needed to reload the page
 	$scope.sendMessage = function(){
 		var data = {message : $scope.message};
 		$http.post('addMessage.php?thread_id='+thread_id, data).then(function(response){
@@ -69,6 +70,7 @@ app.controller('ThreadController', ['$scope', "$http","$controller" , function($
 				if(response.data){
 					//console.log(response.data);
 					$scope.thread = response.data;
+					//Will post to seen.php telling the database that the user read al unread messages
 					$http.post('seen.php?thread_id='+thread_id, {}).
 					then(function(response){
 						
@@ -77,6 +79,7 @@ app.controller('ThreadController', ['$scope', "$http","$controller" , function($
 			});
 	}
 
+	//Will change the date in millis to a user friendly display the time for seen
 	$scope.format = function(string){
 		var d = new Date(string);
 		var options = {
@@ -87,6 +90,7 @@ app.controller('ThreadController', ['$scope', "$http","$controller" , function($
 		return d.toLocaleTimeString("en-US", options);
 	}
 
+	//Finds the username of the person they are sending the message to
 	$http.get('getThread.php?thread_id='+thread_id+"&get=getMessageTo").
 		then(function(response){
 			var sendTo = response.data;
