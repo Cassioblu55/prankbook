@@ -4,9 +4,17 @@ require_once $serverPath.'utils/dataLookUp.php';
 require_once $serverPath . 'utils/requireLogin.php';
 require_once $serverPath . 'utils/dataUpdateInsert.php';
 
-$query="SELECT * FROM prank where id=".$_GET['id'].";";
-$prank=runQuery($query)[0];
 $table = "reviews";
+
+//Sees if an exiting review
+$query = "SELECT * FROM reviews WHERE prank_id=".$_GET['id']." AND user_id=".$_SESSION ['user'] ['id'].";";
+$review=runQuery($query);
+
+if($review){
+	header ( "Location: ".$baseURL."views/reviews/index.php" );
+	die ( "Redirecting to index.php" );
+}
+
 if (! empty ( $_POST )) {
 	$data = [ 
 			'comments' => $_POST ['comments'],
@@ -18,31 +26,12 @@ if (! empty ( $_POST )) {
 		insert ( $table, $data );
 		header ( "Location: ".$baseURL."views/reviews/index.php" );
 		die ( "Redirecting to index.php" );
-	/*if (empty ( $_GET ['id'] )) {
-		insert ( $table, $data );
-		$added = true;
-		header ( "Location: index.php" );
-		die ( "Redirecting to index.php" );
-	} 
-	else {
-		//Normal update cannot be used here becuase it would allow anyone who is logged in to update anyone elses prank
-		$update = "UPDATE " . $table . " SET ";
-		foreach ( $data as $columnName => $value ) {
-			$update .= $columnName . "='" . $value . "', ";
-		}
-		$update = substr ( $update, 0, strlen ( $update ) - 2 ) . " WHERE id=" . $_GET ['id'] ." AND user_id=".$_SESSION['user']['id'].";";
-		echo $update;
-		runInsert ( $update );
-		header ( "Location: index.php" );
-		die ( "Redirecting to index.php" );
-	}*/
-	
 }
 
 include_once $serverPath . 'views/templates/head.php';
 ?>
 
-<div ng-controller="prankAddEditController">
+<div ng-controller="reviewCreateController">
 	<form
 		action="create.php<?php if(!empty($_GET['id'])){ echo "?id=".$_GET['id'];}?>"
 		method="post">
@@ -70,28 +59,5 @@ include_once $serverPath . 'views/templates/head.php';
 				</div>
 			</div>
 		</div>
-
 	</form>
-	<div id="prank" style="display: none"><?php if(!empty($_GET['id'])){echo $_GET['id'];}?></div>
-
 </div>
-
-<script type="text/javascript">
-var prank = document.getElementById("prank").textContent
-app.controller("prankAddEditController", ['$scope', "$http" , function($scope, $http){
-	console.log(prank);
-	if(prank){
-		$http.get('data.php?id='+prank).
-		then(function(response){
-			console.log(response);
-			$scope.review = response.data[0];
-			$scope.review.rating = Number($scope.review.rating);
-			
-		});
-	}
-		$scope.addOrEdit = (!prank) ? "Add" : "Edit";
-		$scope.saveOrUpdate = (!prank) ? "Save" : "Update"
-
-			
-}]);
-</script>
