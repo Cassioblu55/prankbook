@@ -5,5 +5,6 @@ create table reviews (
 	comments varchar(255) null,
 	prank_id INT NULL,
 	user_id INT NOT NULL,
+    reviewed int DEFAULT '1',
 	primary key(id)
 );

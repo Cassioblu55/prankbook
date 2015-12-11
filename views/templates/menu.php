@@ -16,11 +16,16 @@ if ( is_session_started() === FALSE ) session_start();
 ?>
 
 <div ng-controller="MenuController">
+	<body style="background-color: ghostwhite;">
+	<!--this changed the color of the background from white to ghostwhite-->
+	</body>
+	
 	<nav class="navbar navbar-default">
-		<div class="container-fluid">
+		<!--this changed the color of the background on the menu bar from grey to honeydew-->
+		<div class="container-fluid" style="background-color: honeydew;">
 			<!-- Brand and toggle get grouped for better mobile display -->
-			<div class="navbar-header">	
-				<a class="navbar-brand" href="<?php echo $baseURL;?>">prankbook</a> 
+			<div class="navbar-header">
+				<a class="navbar-brand" href="<?php echo $baseURL;?>">Prankbook</a> 
 			</div>
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav">
@@ -33,7 +38,7 @@ if ( is_session_started() === FALSE ) session_start();
 						<li><a href="<?php echo $baseURL;?>views/login/register.php" ng-hide="user">Create Account</a></li>
 						<li class="dropdown"  ng-show="user">
 				          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">{{myProfile}} <span class="caret"></span></a>
-				          <ul class="dropdown-menu">
+				          <ul class="dropdown-menu" style="background-color:foralwhite;">
 				            <li><a href="<?php echo $baseURL;?>views/profile/">My Profile</a></li>
 					        <li><a href="<?php echo $baseURL;?>views/Messages/index.php">My Messages</a></li>
 							<li><a href="<?php echo $baseURL;?>views/services/purchased.php">My Orders</a></li>

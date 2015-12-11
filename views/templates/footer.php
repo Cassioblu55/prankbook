@@ -1,4 +1,6 @@
-<footer class="footer">
+
+<footer class="footer" style="background-color: ghostwhite;">
+	
 	<div class="container-fluid">
 		<div class="row" style="align-items: center;">
 			<div class="col-sm-12 text-muted">
