@@ -1,7 +1,5 @@
 <?php 
-	//  !!!!   Requires config.php already in place   !!!!
-	session_start();
-	
+	//  !!!!   Requires config.php already in place   !!!!	
 	if(empty($_SESSION['user'])){
 		// If they are not, we redirect them to the login page.
 		header("Location: ". $baseURL."views/login/");

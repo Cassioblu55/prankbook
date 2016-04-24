@@ -1,10 +1,29 @@
 <?php
-$dbUser = "cjmetz";
-$dbPassword = "aP6y9rsxLSq6";
-$dbName = "db_cjmetz";
+$dbUser = "user";
+$dbPassword = "password";
+$dbName = "name";
 $db_options = array(PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8');
-$dbHost = "dbdev.cs.uiowa.edu";
-$adminEmail = "conrad-metz@uiowa.edu";
-$baseURL = "/~cjmetz/project/";
-$serverPath = "/mnt/nfs/netapp1/webdev/user/cjmetz/project/";
+$dbHost = "host";
+$adminEmail = "email;
+$baseURL = "/projectBase/";
+$serverPath = "/serverPath/";
+
+
+//this is checking if the user is logged in and if so the bar changes
+function is_session_started()
+{
+    if ( php_sapi_name() !== 'cli' ) {
+        if ( version_compare(phpversion(), '5.4.0', '>=') ) {
+            return session_status() === PHP_SESSION_ACTIVE ? TRUE : FALSE;
+        } else {
+            return session_id() === '' ? FALSE : TRUE;
+        }
+    }
+    return FALSE;
+}
+
+// Example
+if ( is_session_started() === FALSE ) session_start();
+
+
 ?>

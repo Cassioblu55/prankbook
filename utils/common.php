@@ -22,6 +22,5 @@
     // note that in most cases sessions do still use cookies and require the visitor 
     // to have cookies enabled.  For more information about sessions: 
     // http://us.php.net/manual/en/book.session.php 
-    
-    session_start(); 
+ 
  ?>

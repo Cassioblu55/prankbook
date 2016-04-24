@@ -10,7 +10,6 @@
 			echo json_encode(runQuery($query));
 		}
 		else if($get=="myOrders"){
-			session_start();
 			$pranks = "SELECT users.username, prank.*  FROM users INNER JOIN prank WHERE users.id=prank.user_id";
 			$query = "SELECT * FROM services INNER JOIN (".$pranks.") AS prank ON services.prank_id=prank.id WHERE services.user_id=".$_SESSION['user']['id'].";";
 			echo json_encode(runQuery($query));
