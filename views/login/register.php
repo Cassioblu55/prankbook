@@ -153,7 +153,6 @@
         // times for each guess they make against a password, whereas if the password 
         // were hashed only once the attacker would have been able to make 65537 different  
         // guesses in the same amount of time instead of only one. 
-		echo "test";
         for($round = 0; $round < 65536; $round++) 
         { 
             $password = hash('sha256', $password . $salt); 

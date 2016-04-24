@@ -33,7 +33,6 @@ if (! empty ( $_POST )) {
 			$update .= $columnName . "='" . $value . "', ";
 		}
 		$update = substr ( $update, 0, strlen ( $update ) - 2 ) . " WHERE id=" . $_GET ['id'] ." AND user_id=".$_SESSION['user']['id'].";";
-		echo $update;
 		runInsert ( $update );
 		header ( "Location: index.php" );
 		die ( "Redirecting to index.php" );

@@ -4,7 +4,6 @@ include_once $serverPath . 'utils/connection.php';
 //Will update table with given data where id equals the id from the url
 function update($table, $data) {
 	$update = makeBaseUpdate($table, $data)." WHERE id=".$_GET['id'].";";
-	echo $update;
 	runInsert($update);
 }
 
@@ -16,7 +15,6 @@ function updateWithConstratints($table, $data, $constraints){
 		$update .= " ".$columnName."='".$value."' AND ";
 	}
 	$update = substr($update, 0,strlen($update)-4).";";
-	echo $update;
 	runInsert($update);
 	
 }
